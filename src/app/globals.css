@@ -8,6 +8,13 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.primary{
+   color: #B6561A;
+}
+.primaryBg{
+   background-color: #B6561A;
+}
+
 
 body {
  
