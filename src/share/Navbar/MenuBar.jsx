@@ -15,9 +15,9 @@ const MenuBar = ({ user }) => {
 
                               <Link href={'/'} className={`${pathName == "/" ? "activeLink" : ""}`}> Home</Link>
 
-                              <Link href={'/teacher'} className={`${pathName == "/teacher" ? "activeLink" : ""}`}>Teacher </Link>
-                              <Link href={'/leader-board'} className={`${pathName == "/leader-board" ? "activeLink" : ""}`}> Leader board</Link>
-                              <Link href={'/courses'} className={`${pathName == "/courses" ? "activeLink" : ""}`}> All Courses</Link>
+                              <Link href={'/teacher'} className={`${pathName == "/teacher" ? "activeLink" : ""}`}>My Library </Link>
+                              <Link href={'/leader-board'} className={`${pathName == "/leader-board" ? "activeLink" : ""}`}> All Books</Link>
+                              <Link href={'/courses'} className={`${pathName == "/courses" ? "activeLink" : ""}`}> News Feed </Link>
                               <Link href={'/blogs'} className={`${pathName == "/blogs" ? "activeLink" : ""}`}> Blogs</Link>
                               <Link href={'/about'} className={`${pathName == "/about" ? "activeLink" : ""}`}> About</Link>
                               <Link href={'/contact'} className={`${pathName == "/contact" ? "activeLink" : ""}`}> Contact Us</Link>

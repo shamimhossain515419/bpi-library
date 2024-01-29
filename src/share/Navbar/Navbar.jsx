@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Container from "../container/Container";
 import { useState } from "react";
-import logo from "../../../public/image/hero/logo.png"
+import logo from "../../assets/logo.png"
 
 const Navbar = () => {
      const [Open, setOpen] = useState(false)
@@ -15,22 +15,22 @@ const Navbar = () => {
      return (
           <div className=" mb-12">
                <div>
-                    <nav className={`px-2 py-3 z-50    bg-white shadow fixed top-0 left-0 w-full transition-transform`}>
+                    <nav className={`px-2 py-3 z-50    bg-white  fixed top-0 left-0 w-full transition-transform`}>
                          <Container>
                               <div className=' '>
                                    <div className='flex justify-between items-center'>
-                                        <div className=' flex  items-center gap-4 clear-start w-[80px]'>
+                                        <div className=' flex  items-center gap-4 clear-start w-[170px]'>
 
-                                             <Link href="/">  <Image  src={logo} className="    w-[80px]   h-[50px]" alt="image" /> </Link>
+                                             <Link href="/">  <Image src={logo} className="    w-full   h h-full" alt="image" /> </Link>
                                         </div>
 
                                         <div className=' hidden lg:flex items-center gap-3  space-x-5'>
-                                             <Link className={`px-2 rounded-lg ${pathName == "/" ? "activeLink" : ""} hover:text-[#B6561A]  duration-200 font-medium transition-all`} href={'/'}>Home</Link>
-                                             <Link className={`px-2 rounded-lg ${pathName == "/teacher" ? "activeLink" : ""} hover:text-[#B6561A]  duration-200 font-medium transition-all`} href={'/teacher'}>Teacher</Link>
-                                             <Link className={`px-2 rounded-lg ${pathName == "/courses" ? "activeLink" : ""} hover:text-[#B6561A]  duration-200 font-medium transition-all`} href={'/courses'}> All Courses</Link>
-                                             <Link className={`px-2 rounded-lg ${pathName == "/blogs" ? "activeLink" : ""} hover:text-[#B6561A]  duration-200 font-medium transition-all`} href={'/blogs'}>Blogs</Link>
-                                             <Link className={`px-2 rounded-lg ${pathName == "/about" ? "activeLink" : ""} hover:text-[#B6561A]  duration-200 font-medium transition-all`} href={'/about'}>About</Link>
-                                             <Link className={`px-2 rounded-lg ${pathName == "/contact" ? "activeLink" : ""} hover:text-[#B6561A]  duration-200 font-medium transition-all`} href={'/contact'}>Contact Us</Link>
+
+                                             <Link className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`} href={'/teacher'}>My Library <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span> </Link>
+                                             <Link className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`} href={'/courses'}> All Books <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span></Link>
+                                             <Link className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`} href={'/blogs'}>Blogs <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span></Link>
+                                             <Link className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`} href={'/about'}>About <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span></Link>
+                                             <Link className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`} href={'/contact'}>Contact Us <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span></Link>
 
                                         </div>
 
@@ -40,7 +40,7 @@ const Navbar = () => {
 
                                              <div className="flex gap-2 items-center">
                                                   <Link href={'/login'} className="px-5 border-2  py-2 hover:border-white transition-all  text-white bg-[#B6561A] hover:bg-bg-[#B6561A]  duration-150 rounded-[5px] font-mediumer:shadow-lg">Login</Link>
-                                                 
+
                                              </div>
 
                                         </div>
