@@ -1,11 +1,16 @@
+
 import Image from 'next/image';
 import React from 'react';
 import hero1 from "../../../assets/hero.jpg"
 import Container from '@/share/container/Container';
+
 const Hero = () => {
+
      return (
           <div className=''>
+
                <Container>
+
                     <div>
                          <div className=' w-full relative group  max-h-[600px] overflow-hidden'>
                               <Image className=' w-full h-full  object-fill' src={hero1} alt='image'></Image>
@@ -14,7 +19,7 @@ const Hero = () => {
                          </div>
                          <div>
                               <div>
-                                     
+
                               </div>
                               <div></div>
                          </div>

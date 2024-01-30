@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+     images: {
+          domains: ['tailwindui.com'], // Add the domain causing the issue
+     },
+};
 
 export default nextConfig;

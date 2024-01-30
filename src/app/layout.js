@@ -3,6 +3,7 @@ import "./globals.css";
 import AllProvider from "@/components/AllProvider/AllProvider";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <AllProvider>
           {children}
         </AllProvider>
+       
       </body>
     </html>
   );
