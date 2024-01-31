@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mongodb"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+// User model represents information about users
+model User {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  email      String    @unique // Unique email for each user
+  name       String? // Optional user name
+  department String? // Optional department information
+  isRole     String? // Assuming this is a required field
+  semester   String? // Optional semester information
+  roll       Int       @unique // Unique roll number for each user
+  shift      String? // Optional shift information
+  gruop      String? // Typo? Did you mean "group"? Optional group information
+  session    String? // Optional session information
+  reg        Int ?       @unique // Unique registration number for each user
+  phone      Int ?       @unique // Unique phone number for each user
+  address    Address? // Optional address information
+  Comment    Comment[] 
+}
+
+// Books model represents information about books
+model Books {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String // Name of the book
+  title       String // Title of the book
+  image1      String? // Optional image link 1
+  image2      String // Image link 2
+  price       Float? // Optional price of the book
+  category    String // Category of the book
+  writer_name String // Name of the book's writer
+  quantity    Int // Quantity of books available
+  description String? // Optional book description
+  createdAt   DateTime  @default(now()) // Creation timestamp
+  comment     Comment[] // Array of comments associated with the book
+}
+
+// Comment model represents comments associated with books
+model Comment {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  comment String // Actual comment text
+  books   Books  @relation(fields: [booksId], references: [id])
+  booksId String @db.ObjectId
+  user    User   @relation(fields: [userId], references: [id])
+  userId  String @db.ObjectId
+}
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  image       String?
+  title       String
+  price       Float
+  category    String
+  description String?
+  createdAt   DateTime @default(now())
+  books       String
+}
+
+model Todo {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isCompleted Boolean? @default(false)
+}
+
+type Address {
+  street String
+  city   String
+  state  String
+  zip    String
+}
