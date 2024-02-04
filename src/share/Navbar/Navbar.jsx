@@ -11,24 +11,20 @@ import { GlobalContext } from "@/AuthProvider/AuthProvider";
 import CustomToastMessage from "@/components/customToastMessage/CustomToastMessage";
 import toast from "react-hot-toast";
 import { Avatar } from "keep-react";
+import UserModal from "@/components/userModal/UserModal";
 
 const Navbar = () => {
      const [Open, setOpen] = useState(false);
      const { user, logOutUser } = useContext(GlobalContext);
      const pathName = usePathname();
+     const [openUserModal, setOpenUserModal] = useState(false)
      const router = useRouter();
-     const handleLogout = async () => {
-          const result = await logOutUser();
 
-          toast.success("logout success");
-          router.push("/");
-          window.location.reload();
-     };
      console.log(user);
 
      return (
-          <div className=" mb-12">
-               <div>
+          <div className=" mb-12 relative text-gray-600">
+               <div>p
                     <nav
                          className={`px-2 py-3 z-50    bg-white  fixed top-0 left-0 w-full transition-transform`}
                     >
@@ -38,7 +34,7 @@ const Navbar = () => {
                                         <div className=" flex  items-center gap-4 clear-start w-[170px]">
                                              <Link href="/">
                                                   {" "}
-                                                  <Image
+                                                  <Image width={50} height={50}
                                                        src={logo}
                                                        className="    w-full   h h-full"
                                                        alt="image"
@@ -48,54 +44,54 @@ const Navbar = () => {
 
                                         <div className=" hidden lg:flex items-center gap-3  space-x-5">
                                              <Link
-                                                  className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`}
+                                                  className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
                                                   href={"/allbooks"}
                                              >
                                                   All Books{" "}
-                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span>{" "}
+                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>{" "}
                                              </Link>
                                              <Link
-                                                  className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`}
+                                                  className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
                                                   href={"/research"}
                                              >
                                                   {" "}
                                                   Research Cell{" "}
-                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span>
+                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>
                                              </Link>
                                              <Link
-                                                  className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`}
+                                                  className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
                                                   href={"/department"}
                                              >
                                                   Department{" "}
-                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span>
+                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>
                                              </Link>
                                              <Link
-                                                  className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`}
+                                                  className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
                                                   href={"/Gallay"}
                                              >
                                                   Gallay{" "}
-                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span>
+                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>
                                              </Link>
                                              <Link
-                                                  className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`}
+                                                  className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
                                                   href={"/about"}
                                              >
                                                   About{" "}
-                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span>
+                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>
                                              </Link>
                                              <Link
-                                                  className={` rounded-lg  hover:text-[#B6561A] relative group  duration-200 font-medium transition-all`}
+                                                  className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
                                                   href={"/contact"}
                                              >
                                                   Contact Us{" "}
-                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-[#ff6900] transition-all duration-200 group-hover:w-full"></span>
+                                                  <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>
                                              </Link>
                                         </div>
 
                                         {/* right side user image and modal for large screen */}
                                         <div className=" hidden lg:block">
                                              {user ? (
-                                                  <div onClick={handleLogout}>
+                                                  <div onClick={() => setOpenUserModal(!openUserModal)} className=" cursor-pointer">
                                                        {" "}
                                                        {user?.photoURL ? (
                                                             <Image
@@ -155,7 +151,12 @@ const Navbar = () => {
                          </Container>
                     </nav>
                </div>
+
                <CustomToastMessage></CustomToastMessage>
+
+               <UserModal openUserModal={openUserModal}></UserModal>
+
+
           </div>
      );
 };

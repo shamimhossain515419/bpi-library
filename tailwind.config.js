@@ -11,12 +11,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#B6561A", // Use your custom primary color
-        secondary: "#00000", // Use your custom secondary color
+        primary: "#4F46E5",
+        secondary: "#38BDF8",
+        tertiary: "#EDECFC",
       },
       backgroundColor: {
-        primary: "#B6561A", // Use your custom primary background color
-        secondary: "#00000", // Use your custom secondary background color
+        primary: "#4F46E5",
+        secondary: "#38BDF8",
+        tertiary: "#EDECFC",
       },
     },
   },

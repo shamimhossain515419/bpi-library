@@ -17,6 +17,7 @@
     "cookie": "^0.6.0",
     "cookies-next": "^4.1.1",
     "firebase": "^10.7.2",
+    "framer-motion": "^11.0.3",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "keep-react": "^1.1.2",
