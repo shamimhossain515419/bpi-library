@@ -1,3 +1,4 @@
+@import "keep-react/css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,16 +9,12 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-.primary{
-   color: #B6561A;
+.primary {
+  color: #b6561a;
 }
-.primaryBg{
-   background-color: #B6561A;
+.primaryBg {
+  background-color: #b6561a;
 }
-
 
 body {
- 
- 
 }
-

@@ -25,7 +25,7 @@ const page = () => {
      return (
           <div>
                <div className=" p-9">
-                     <button onClick={handleClick} className=" p-4   bg-red-400 text-white  rounded"> Click post</button>
+                    <button onClick={handleClick} className=" p-4   bg-red-400 text-white  rounded"> Click post</button>
                </div>
           </div>
      );
