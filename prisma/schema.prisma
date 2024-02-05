@@ -18,8 +18,8 @@ model Product {
 }
 
 model User {
-    id         String   @id @default(auto()) @map("_id") @db.ObjectId
-    email      String @unique
+    id         String    @id @default(auto()) @map("_id") @db.ObjectId
+    email      String    @unique
     name       String?
     department String?
     isRole     String?
@@ -30,5 +30,41 @@ model User {
     session    String?
     reg        Int?
     phone      Int?
-    createdAt  DateTime @default(now())
+    createdAt  DateTime  @default(now())
+    Comment    Comment[]
+}
+
+// Books model represents information about books
+model Books {
+    id          String    @id @default(auto()) @map("_id") @db.ObjectId
+    name        String    @unique
+    title       String // Title of the book
+    image1      String // Optional image link 1
+    image2      String? // Image link 2
+    image3      String? // Image link 2
+    price       Float? // Optional price of the book
+    category    String // Category of the book
+    writer_name String // Name of the book's writer
+    quantity    Int // Quantity of books available
+    description String? // Optional book description
+    department  String?
+    createdAt   DateTime  @default(now()) // Creation timestamp
+    comment     Comment[] // Array of comments associated with the book
+}
+
+// Comment model represents comments associated with books
+model Comment {
+    id      String @id @default(auto()) @map("_id") @db.ObjectId
+    comment String // Actual comment text
+    books   Books  @relation(fields: [booksId], references: [id])
+    booksId String @db.ObjectId
+    user    User   @relation(fields: [userId], references: [id])
+    userId  String @db.ObjectId
+}
+
+type Address {
+    street String
+    city   String
+    state  String
+    zip    String
 }

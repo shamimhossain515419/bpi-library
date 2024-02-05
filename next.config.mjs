@@ -20,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "img.freepik.com",
+        hostname: "demo2.pavothemes.com",
       },
       {
         protocol: "https",
