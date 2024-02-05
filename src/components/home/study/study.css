@@ -1,0 +1,16 @@
+.studyBg {
+  background-image: url("../../../../public/image/home/bg_study-copyright.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 500px;
+}
+
+bg {
+  background-image: linear-gradient(
+    58deg,
+    #4f46e5 0%,
+    #cfd1fc 58%,
+    #66e0ee 100%
+  );
+}

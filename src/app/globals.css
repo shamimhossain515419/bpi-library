@@ -1,3 +1,4 @@
+@import "keep-react/css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,17 +8,45 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
-.primary{
-   color: #B6561A;
-}
-.primaryBg{
-   background-color: #B6561A;
-}
-
-
 body {
- 
- 
+  overflow-x: hidden;
 }
 
+.primary {
+  color: #4f46e5;
+}
+.primaryBg {
+  background-color: #4f46e5;
+}
+
+.animate-fadeInUp_userModal {
+  animation: fadeInUp_userModal 0.5s ease-in-out;
+}
+
+.animate-fadeOutDown_userModal {
+  animation: fadeOutDown_userModal 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp_userModal {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutDown_userModal {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
