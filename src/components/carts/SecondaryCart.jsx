@@ -1,15 +1,16 @@
 
 "use client"
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { MdOutlineStar } from "react-icons/md";
 
 const SecondaryCart = () => {
     return (
         <div className='  flex items-start  gap-2 py-2 '>
-            <div className=''>
+            <Link href={'/'} className=''>
                 <Image className=' rounded-xl h-[110px] object-cover ' width={100} height={100} src={"https://demo2.pavothemes.com/bookory/wp-content/uploads/2022/02/35.jpg"} alt='image'></Image>
-            </div>
+            </Link>
             <div>
                 <h1 className=' text-gray-700 hover:text-primary  cursor-pointer text-[15px] md:text-[18px]  font-medium duration-300'>Rich Dad Poor Dad</h1>
                 <div className='  flex items-center gap-[2px] py-1'>

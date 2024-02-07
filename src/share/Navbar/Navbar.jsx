@@ -67,9 +67,9 @@ const Navbar = () => {
                                              </Link>
                                              <Link
                                                   className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
-                                                  href={"/Gallay"}
+                                                  href={"/gallery"}
                                              >
-                                                  Gallay{" "}
+                                                  Gallery{" "}
                                                   <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>
                                              </Link>
                                              <Link
