@@ -7,14 +7,12 @@ export async function DELETE(req) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    console.log(id);
 
     const deleteBooks = await prisma.books.delete({
       where: {
         id: id,
       },
     });
-    console.log(deleteBooks);
 
     if (deleteBooks) {
       return NextResponse.json({

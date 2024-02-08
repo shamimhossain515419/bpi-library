@@ -1,8 +1,8 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../assets/logo.png"
-import bannar from "../../assets/account/background.jpg"
+import logo from "../../../assets/logo.png"
+import bannar from "../../../assets/account/background.jpg"
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -13,9 +13,10 @@ import GoogleSing from "@/components/auth/GoogleSing";
 
 export default function Register() {
      const [registeruser, { data: registerResult, isSuccess, isLoading, data, error }] = useRegisteruserMutation()
-     const { createUser, googleSignIn } = useContext(GlobalContext);
+     const { createUser, updateUserProfile } = useContext(GlobalContext);
      const router = useRouter()
-     const [loading, setLoading] = useState(false)
+     const [loading, setLoading] = useState(false);
+
      const handleSubmit = async (e) => {
           //  sebmit form 
           e.preventDefault()
@@ -27,12 +28,12 @@ export default function Register() {
           const confirm_password = from?.confirm_password.value
           const data = { name, email };
           const res = await createUser(email, password);
-          if (res?.user) {
+          const photo = ""
+          const ressult = await updateUserProfile(name, photo)
+          if (res?.user && ressult) {
                registeruser(data);
           }
      }
-
-
 
      useEffect(() => {
           if (registerResult && isSuccess) {
@@ -49,7 +50,7 @@ export default function Register() {
 
      }, [registerResult, isSuccess])
 
-    
+
      return (
           <div className="grid md:grid-cols-2 gap-4 py-20">
 
@@ -141,7 +142,7 @@ export default function Register() {
                               <div>
                                    <button disabled={loading}
                                         type="submit"
-                                        className="flex w-full justify-center rounded-md   bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#ff6a00e2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                        className="flex w-full justify-center rounded-md   bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                                    >
                                         {loading ? <ClipLoader size={20} color="#ffff" /> : <span>Submit</span>
                                         }

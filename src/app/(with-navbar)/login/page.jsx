@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../assets/logo.png"
-import bannar from "../../assets/account/background.jpg"
+import logo from "../../../assets/logo.png"
+import bannar from "../../../assets/account/background.jpg"
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
@@ -13,12 +13,11 @@ import { useLoginuserMutation } from "@/redux/features/auth/authApi";
 
 export default function Login() {
      const [loginuser, { data: loginResult, isSuccess, isLoading, data, error }] = useLoginuserMutation()
-
      const { loginUser } = useContext(GlobalContext);
      const router = useRouter()
      const [loading, setLoading] = useState(false)
      const handleSubmit = async (e) => {
-          setLoading(false)
+          setLoading(true)
           e.preventDefault()
           const from = e.target;
           const email = from?.email.value
@@ -35,6 +34,7 @@ export default function Login() {
 
      useEffect(() => {
           if (loginResult && isSuccess) {
+               setLoading(false)
                Swal.fire({
                     position: "top-end",
                     icon: "success",

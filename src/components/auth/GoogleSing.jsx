@@ -16,7 +16,7 @@ const GoogleSing = () => {
     const handleGoogle = async () => {
         const res = await googleSignIn();
         if (res?.user) {
-            const data = { email: res?.user?.email, name: res?.dispayName?.name };
+            const data = { email: res?.user?.email, name: res?.dispayName?.name, provider: true };
 
             registeruser(data);
         }
@@ -31,7 +31,7 @@ const GoogleSing = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            router.push("/login");
+            router.push("/");
         }
     }, [registerResult, isSuccess]);
 

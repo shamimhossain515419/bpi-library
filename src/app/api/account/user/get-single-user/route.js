@@ -7,8 +7,6 @@ export async function GET(req, res) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    console.log(id);
-
     const findSingleUser = await prisma.user.findUnique({
       where: {
         id: id,
@@ -30,7 +28,6 @@ export async function GET(req, res) {
       });
     }
   } catch (e) {
-    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,

@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "corano.demo.towerthemes.com",
+        hostname: "demo2.pavothemes.com",
       },
       {
         protocol: "https",
@@ -16,11 +16,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "tecdn.b-cdn.net",
+        hostname: "simgbb.com",
       },
       {
         protocol: "https",
-        hostname: "demo2.pavothemes.com",
+        hostname: "i.pravatar.cc",
       },
       {
         protocol: "https",

@@ -1,24 +1,73 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import jwt from "jsonwebtoken";
-import Cookies from "js-cookie";
-import { cookies } from "next/headers";
 const prisma = new PrismaClient();
+import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 export const dynamic = "force-dynamic";
 const key = process.env.ACCESS_TOKEN_SECRET;
 export async function POST(req) {
   try {
-    const data = await req.json();
-    console.log(data);
-    const { email } = data || {};
+    const respondata = await req.json();
+    const cookieStore = cookies();
+    const { email, provider, name } = respondata || {};
+    const data = { name: respondata?.name, email: respondata?.email };
+    //  provider login condition
+    if (provider) {
+      //  find use provide email in provider login
+      const GooglefindSingleUser = await prisma.user.findUnique({
+        where: {
+          email,
+        },
+      });
 
+      // generate jwt token from  email and key
+      const token = jwt.sign({ email, key }, "default_secret_key", {
+        expiresIn: "20d",
+      });
+
+      //  all ready exit   user session
+      if (GooglefindSingleUser) {
+        cookieStore.set("accessToken", token);
+
+        return NextResponse.json({
+          stateCode: 2000,
+          success: "success",
+          message: " successfully  goole login ",
+          data: GooglefindSingleUser,
+          token: token,
+        });
+      } else {
+        //  google provider create new user
+        const GoolgeLognnewuser = await prisma.user?.create({ data });
+
+        if (GoolgeLognnewuser) {
+          cookieStore.set("accessToken", token);
+
+          return NextResponse.json({
+            stateCode: 200,
+            success: true,
+            message: "prodcut added successfully",
+            data: GoolgeLognnewuser,
+            token: token,
+          });
+        } else {
+          return NextResponse.json({
+            stateCode: 402,
+            success: false,
+            message: "Fail data  post please try agin",
+          });
+        }
+      }
+    }
+
+    //  email password login
+    //  fint user provide email
     const findSingleUser = await prisma.user.findUnique({
       where: {
         email,
       },
     });
-    console.log(findSingleUser);
-
+    //  if user allready   registered
     if (findSingleUser) {
       return NextResponse.json({
         stateCode: 302,
@@ -27,20 +76,9 @@ export async function POST(req) {
         data: findSingleUser,
       });
     }
-    const newuser = await prisma.user?.create({ data });
-    const token = jwt.sign({ email, key }, "default_secret_key", {
-      expiresIn: "20d",
-    });
 
-    if (token) {
-      const cookieStore = cookies()
-      cookieStore.set('accessToken', token)
-    } else {
-      return NextResponse.json({
-        success: false,
-        massage: error.details[0].message,
-      });
-    }
+    // create new user in emial   and name
+    const newuser = await prisma.user?.create({ data });
 
     if (newuser) {
       return NextResponse.json({
@@ -48,7 +86,6 @@ export async function POST(req) {
         success: true,
         message: "prodcut added successfully",
         data: newuser,
-        token: token,
       });
     } else {
       return NextResponse.json({
@@ -58,11 +95,10 @@ export async function POST(req) {
       });
     }
   } catch (e) {
-    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,
-      message: "Something went wrong ! Please try again later",
+      message: `${e}Something went wrong ! Please try again later`,
     });
   }
 }

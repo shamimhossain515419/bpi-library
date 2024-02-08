@@ -28,7 +28,7 @@ const Stidy = () => {
                                     <h4>Donation</h4>
                                     <h4>Support the Library, Give Today.</h4>
                                 </div>
-                                <button class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> Make A Donation</button>
+                                <button className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> Make A Donation</button>
                             </div>
                         </Container>
                     </div>

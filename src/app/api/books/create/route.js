@@ -14,7 +14,6 @@ export async function POST(req) {
         name: name,
       },
     });
-    console.log(extingBooks);
 
     if (extingBooks) {
       return NextResponse.json({
@@ -24,11 +23,8 @@ export async function POST(req) {
         data: extingBooks,
       });
     }
-    console.log(data);
 
     const createBooks = await prisma.books.create({ data });
-    console.log(createBooks);
-
     if (createBooks) {
       return NextResponse.json({
         stateCode: 200,

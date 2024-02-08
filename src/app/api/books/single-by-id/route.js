@@ -7,14 +7,12 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    console.log(id);
 
     const SngleBooks = await prisma.books.findUnique({
       where: {
         id: id,
       },
     });
-    console.log(SngleBooks);
 
     if (SngleBooks) {
       return NextResponse.json({
@@ -29,7 +27,6 @@ export async function GET(req) {
       });
     }
   } catch (e) {
-    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,

@@ -7,7 +7,6 @@ export async function DELETE(req) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    console.log(id);
 
     const deleteSingleuser = await prisma.user.delete({
       where: {
@@ -30,7 +29,6 @@ export async function DELETE(req) {
       });
     }
   } catch (e) {
-    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,

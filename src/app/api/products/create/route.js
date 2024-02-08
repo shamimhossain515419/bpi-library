@@ -6,8 +6,6 @@ export const dynamic = "force-dynamic";
 export async function POST(req) {
   try {
     const data = await req.json();
-    console.log(data);
-    console.log("first");
 
     const title = "tiadfadftlddfe";
     const price = 20335453440.34;
@@ -15,8 +13,7 @@ export async function POST(req) {
     const image = "imaadfgadfgeadf";
     const newPost = { title, price, category, image };
 
-    const prodcutResult = await prisma.product.create({data});
-    console.log(prodcutResult);
+    const prodcutResult = await prisma.product.create({ data });
 
     if (prodcutResult) {
       return NextResponse.json({
@@ -31,7 +28,6 @@ export async function POST(req) {
       });
     }
   } catch (e) {
-    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,

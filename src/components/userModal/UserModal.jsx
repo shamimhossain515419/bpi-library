@@ -9,17 +9,25 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { CiLogout } from "react-icons/ci";
+import Cookies from 'js-cookie';
 
 const UserModal = ({ openUserModal, setOpenUserModal }) => {
     const { user, logOutUser } = useContext(GlobalContext);
     const router = useRouter();
     const handleLogout = async () => {
-        const result = await logOutUser();
+        try {
 
-        toast.success("logout success");
-        router.push("/");
-        window.location.reload();
+            await logOutUser();
+            Cookies.remove('accessToken');
+            toast.success("Logout success");
+            router.push("/");
+            window.location.reload();
+        } catch (error) {
+            console.error("Logout failed", error);
+            // Handle logout failure if needed
+        }
     };
+
     return (
         <div className={`max-w-[350px] ${openUserModal ? " block" : " hidden"}  right-0 fixed top-[62px] shadow rounded-[5px] z-50 bg-white`}>
 
@@ -29,7 +37,7 @@ const UserModal = ({ openUserModal, setOpenUserModal }) => {
                 <div className=" m-3 rounded-md p-2 ">
 
 
-                    <Link href={'/'} className="flex items-center justify-between p-1 mb-0.5 hover:bg-tertiary rounded-t-md rounded-b-md ">
+                    <Link href={'/account'} className="flex items-center justify-between p-1 mb-0.5 hover:bg-tertiary rounded-t-md rounded-b-md ">
 
                         <p ><span className="font-semibold text-primary ms-1.5 me-10"> {user?.displayName} </span></p>
                         {
