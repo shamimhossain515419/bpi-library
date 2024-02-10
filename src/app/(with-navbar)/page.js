@@ -1,3 +1,4 @@
+import LatestBlog from "@/components/Latestblog/LatestBlog";
 import Bestreading from "@/components/home/bestreading/Bestreading";
 import Departments from "@/components/home/departments/Departments";
 import Hero from "@/components/home/hero/Hero";
@@ -16,6 +17,7 @@ export default function Home() {
       <Trending />
       <Bestreading />
       <Popular />
+      <LatestBlog />
 
       <Stidy></Stidy>
 

@@ -31,72 +31,72 @@ const Hero = () => {
 
      return (
           <div className=''>
-               <Container>
-
+               <div className='  relative'>
+                    {/* banner slider  */}
                     <div>
-                         <div className=' relative'>
-                              {/* banner slider  */}
-                              <div>
-                                   <Swiper
-                                        ref={swiperRef}
-                                        slidesPerView={1}
-                                        spaceBetween={2}
-                                        loop={true}
-                                        speed={500}
+                         <Swiper
+                              ref={swiperRef}
+                              slidesPerView={1}
+                              spaceBetween={2}
+                              loop={true}
+                              speed={500}
 
-                                        modules={[Pagination, Navigation]}
-                                        className="mySwiper overflow-hidden "
-                                   >
+                              modules={[Pagination, Navigation]}
+                              className="mySwiper overflow-hidden "
+                         >
 
-                                        <SwiperSlide className=" ">
-                                             <div className=' w-full relative group   h-[500px] md:h-[700px] overflow-hidden'>
-                                                  <Image className=' w-full h-full  object-fill' src={hero1} alt='image'></Image>
-                                                  <span className=' absolute top-0  opacity-0 group-hover:opacity-100 duration-500 w-full h-full bg-[#00000052]'></span>
-                                                  <h1 className='text-[25px] absolute bottom-7 left-5 hover:text-primary lg:text-[52px] text-white font-bold capitalize'>
-                                                       Library Office Security Administration</h1>
-                                             </div>
-
-                                        </SwiperSlide>
-                                        <SwiperSlide className=" ">
-                                             <div className=' w-full relative group   h-[500px] md:h-[700px] overflow-hidden'>
-                                                  <Image className=' w-full h-full  object-fill' src={hero2} alt='image'></Image>
-                                                  <span className=' absolute top-0  opacity-0 group-hover:opacity-100 duration-500 w-full h-full bg-[#00000052]'></span>
-                                                  <h1 className='text-[25px] absolute bottom-7 left-5 hover:text-primary lg:text-[52px] text-white font-bold capitalize'>The Appalling and Beguiling History</h1>
-                                             </div>
-
-                                        </SwiperSlide>
-                                        <SwiperSlide className=" ">
-                                             <div className=' w-full relative group  h-[500px] md:h-[700px] overflow-hidden'>
-                                                  <Image className=' w-full h-full  object-fill' src={hero3} alt='image'></Image>
-                                                  <span className=' absolute top-0  opacity-0 group-hover:opacity-100 duration-500 w-full h-full bg-[#00000052]'></span>
-                                                  <h1 className='text-[25px] absolute bottom-7 left-5 hover:text-primary lg:text-[52px] text-white font-bold capitalize'>The Appalling and Beguiling History</h1>
-                                             </div>
-
-                                        </SwiperSlide>
-
-                                   </Swiper>
-                              </div>
-
-                              <div className="arrow absolute     top-1/2  right-10 md:20 z-30  w-full ">
-                                   <div className=" flex  justify-end items-center  gap-5 ">
-                                        <div
-                                             className="flex cursor-pointer text-white hover:text-red-600 justify-center items-center shadow h-[30px] b  duration-150  rounded-md "
-                                             onClick={goPrev}
-                                        >
-                                             {/*   button  */}
-                                             <MdArrowBackIosNew size={25} />
-                                        </div>
-                                        <div
-                                             className="flex cursor-pointer text-white hover:text-red-600 justify-center items-center shadow h-[30px] w-[30px]   duration-150 rounded-md "
-                                             onClick={goNext}
-                                        >
-                                             {/*  Next button  */}
-                                             <MdArrowForwardIos size={25} />
-
-                                        </div>
+                              <SwiperSlide className=" ">
+                                   <div className=' w-full relative group   h-[500px] md:h-[700px] overflow-hidden'>
+                                        <Image className=' w-full h-full  object-fill' src={hero1} alt='image'></Image>
+                                        <span className=' absolute top-0  opacity-0 group-hover:opacity-100 duration-500 w-full h-full bg-[#00000052]'></span>
+                                        <h1 className='text-[25px] absolute bottom-7 left-5 hover:text-primary lg:text-[52px] text-white font-bold capitalize'>
+                                             Library Office Security Administration</h1>
                                    </div>
+
+                              </SwiperSlide>
+                              <SwiperSlide className=" ">
+                                   <div className=' w-full relative group   h-[500px] md:h-[700px] overflow-hidden'>
+                                        <Image className=' w-full h-full  object-fill' src={hero2} alt='image'></Image>
+                                        <span className=' absolute top-0  opacity-0 group-hover:opacity-100 duration-500 w-full h-full bg-[#00000052]'></span>
+                                        <h1 className='text-[25px] absolute bottom-7 left-5 hover:text-primary lg:text-[52px] text-white font-bold capitalize'>The Appalling and Beguiling History</h1>
+                                   </div>
+
+                              </SwiperSlide>
+                              <SwiperSlide className=" ">
+                                   <div className=' w-full relative group  h-[500px] md:h-[700px] overflow-hidden'>
+                                        <Image className=' w-full h-full  object-fill' src={hero3} alt='image'></Image>
+                                        <span className=' absolute top-0  opacity-0 group-hover:opacity-100 duration-500 w-full h-full bg-[#00000052]'></span>
+                                        <h1 className='text-[25px] absolute bottom-7 left-5 hover:text-primary lg:text-[52px] text-white font-bold capitalize'>The Appalling and Beguiling History</h1>
+                                   </div>
+
+                              </SwiperSlide>
+
+                         </Swiper>
+                    </div>
+
+                    <div className="arrow absolute     top-1/2  right-10 md:20 z-30  w-full ">
+                         <div className=" flex  justify-end items-center  gap-5 ">
+                              <div
+                                   className="flex cursor-pointer text-white hover:text-red-600 justify-center items-center shadow h-[30px] b  duration-150  rounded-md "
+                                   onClick={goPrev}
+                              >
+                                   {/*   button  */}
+                                   <MdArrowBackIosNew size={25} />
+                              </div>
+                              <div
+                                   className="flex cursor-pointer text-white hover:text-red-600 justify-center items-center shadow h-[30px] w-[30px]   duration-150 rounded-md "
+                                   onClick={goNext}
+                              >
+                                   {/*  Next button  */}
+                                   <MdArrowForwardIos size={25} />
+
                               </div>
                          </div>
+                    </div>
+               </div>
+               <Container>
+                    <div className=' py-4'>
+
                          <div className='w-full flex  lg:flex-row flex-col  justify-center '>
                               <div className='  w-full lg:w-[70%] bg-tertiary py-10 '>
                                    <div className='   w-full flex justify-center items-center h-full px-4'>

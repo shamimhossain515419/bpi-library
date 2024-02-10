@@ -25,7 +25,7 @@ const Navbar = () => {
 
      return (
           <div className=" mb-12 relative text-gray-600">
-               <div>p
+               <div>
                     <nav
                          className={`px-2 py-3 z-50    bg-white shadow-md  fixed top-0 left-0 w-full transition-transform`}
                     >
@@ -46,7 +46,7 @@ const Navbar = () => {
                                         <div className=" hidden lg:flex items-center gap-3  space-x-5">
                                              <Link
                                                   className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
-                                                  href={"/allbooks"}
+                                                  href={"/all-books"}
                                              >
                                                   All Books{" "}
                                                   <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>{" "}
@@ -68,11 +68,11 @@ const Navbar = () => {
                                                        </Link>
                                                   </div>
                                                   <div className="  group-hover:block hover:block hidden duration-200   absolute z-30    ">
-                                                       <div className="  space-y-3 flex flex-col  gap-3  mt-[20px] bg-white  py-5    " >
+                                                       <div className=" flex flex-col  gap-2  mt-[20px] bg-white  py-5    " >
                                                             <Link href={'/collections/fall-winter-2023'} className=" hover:text-primary hover:bg-tertiary py-2 duration-200   px-10"> Computer </Link>
                                                             <Link href={'/department/spring-summer-2023'} className=" hover:text-primary  hover:bg-tertiary py-2  duration-200   px-10">  Civil </Link>
                                                             <Link href={'/department/fall-winter-2022'} className=" hover:text-primary   hover:bg-tertiary py-2  duration-200   px-10">  Electrical  </Link>
-                                                            <Link href={'/department/fall-winter-2022'} className=" hover:text-primary  hover:bg-tertiary py-2   duration-200   px-10">  Electronic </Link>
+                                                            <Link href={'/department/fall-winter-2022'} className=" hover:text-primary  hover:bg-tertiary py-2   duration-200   px-10">  Electronics </Link>
                                                             <Link href={'/department/fall-winter-2022'} className=" hover:text-primary  hover:bg-tertiary py-2  duration-200   px-10">  Power </Link>
                                                        </div>
                                                   </div>
@@ -121,7 +121,7 @@ const Navbar = () => {
                                                   <div className="flex gap-2 items-center">
                                                        <Link
                                                             href={"/login"}
-                                                            className="px-5 border-2  py-2 hover:border-white transition-all  text-white bg-[#B6561A] hover:bg-bg-[#B6561A]  duration-150 rounded-[5px] font-mediumer:shadow-lg"
+                                                            className="px-5 border-2  py-2 hover:border-white transition-all  text-white bg-primary hover:bg-bg-[#B6561A]  duration-150 rounded-[5px] font-mediumer:shadow-lg"
                                                        >
                                                             Login
                                                        </Link>
