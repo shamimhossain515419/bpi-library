@@ -10,7 +10,7 @@ const layout = ({ children }) => {
             <div>
                 <Navbar></Navbar>
             </div>
-            <div className=' min-h-[50vh]'>
+            <div className=' min-h-[50vh] pt-9'>
                 {children}
             </div>
             <div>

@@ -9,7 +9,6 @@ import { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import { GlobalContext } from "@/AuthProvider/AuthProvider";
 import CustomToastMessage from "@/components/customToastMessage/CustomToastMessage";
-import toast from "react-hot-toast";
 import { Avatar } from "keep-react";
 import UserModal from "@/components/userModal/UserModal";
 import { MdKeyboardArrowDown } from "react-icons/md";
@@ -35,9 +34,9 @@ const Navbar = () => {
                                         <div className=" flex  items-center gap-4 clear-start w-[170px]">
                                              <Link href="/">
                                                   {" "}
-                                                  <Image width={50} height={50}
+                                                  <Image width={0} height={50}
                                                        src={logo}
-                                                       className="    w-full   h h-full"
+                                                       className="  block   w-full   h-full"
                                                        alt="image"
                                                   />{" "}
                                              </Link>
@@ -69,11 +68,12 @@ const Navbar = () => {
                                                   </div>
                                                   <div className="  group-hover:block hover:block hidden duration-200   absolute z-30    ">
                                                        <div className=" flex flex-col  gap-2  mt-[20px] bg-white  py-5    " >
-                                                            <Link href={'/collections/fall-winter-2023'} className=" hover:text-primary hover:bg-tertiary py-2 duration-200   px-10"> Computer </Link>
-                                                            <Link href={'/department/spring-summer-2023'} className=" hover:text-primary  hover:bg-tertiary py-2  duration-200   px-10">  Civil </Link>
-                                                            <Link href={'/department/fall-winter-2022'} className=" hover:text-primary   hover:bg-tertiary py-2  duration-200   px-10">  Electrical  </Link>
-                                                            <Link href={'/department/fall-winter-2022'} className=" hover:text-primary  hover:bg-tertiary py-2   duration-200   px-10">  Electronics </Link>
-                                                            <Link href={'/department/fall-winter-2022'} className=" hover:text-primary  hover:bg-tertiary py-2  duration-200   px-10">  Power </Link>
+                                                            <Link href={'/department/computer'} className=" hover:text-primary hover:bg-tertiary py-2 duration-200   px-10"> Computer </Link>
+                                                            <Link href={'/department/civil'} className=" hover:text-primary  hover:bg-tertiary py-2  duration-200   px-10">  Civil </Link>
+                                                            <Link href={'/department/electrical'} className=" hover:text-primary   hover:bg-tertiary py-2  duration-200   px-10">  Electrical  </Link>
+                                                            <Link href={'/department/electronics'} className=" hover:text-primary  hover:bg-tertiary py-2   duration-200   px-10">  Electronics </Link>
+
+                                                            <Link href={'/department/power'} className=" hover:text-primary  hover:bg-tertiary py-2  duration-200   px-10">  Power </Link>
                                                        </div>
                                                   </div>
                                              </div>

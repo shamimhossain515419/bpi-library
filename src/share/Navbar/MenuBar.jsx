@@ -1,12 +1,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 
+
 const MenuBar = ({ user }) => {
-     const pathName = usePathname()
+     const pathName = usePathname();
+
      return (
           <div className=' pt-4'>
                <div>
@@ -16,7 +18,7 @@ const MenuBar = ({ user }) => {
                               <div className="  space-y-3">
                                    <Link
                                         className={` rounded-lg block  hover:text-primary relative group  duration-200 font-medium transition-all`}
-                                        href={"/allbooks"}
+                                        href={"/all-books"}
                                    >
                                         All Books{" "}
                                         <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>{" "}
@@ -73,7 +75,7 @@ const MenuBar = ({ user }) => {
                                    ''
                                    :
                                    <div className="flex gap-2 items-center mx-auto">
-                                        <Link href={'/login'} className="px-5 border-2 hover:border-white transition-all border-[#27895C] text-white bg-[#27895C] hover:bg-[#black font-mediumFe1] rounded-full font-mediumer:shadow-lg">Login</Link>
+                                        <Link href={'/login'} className="px-5 border-2 hover:border-white transition-all border-primary text-white  bg-primary hover:bg-[#black font-mediumFe1] rounded-full font-mediumer:shadow-lg">Login</Link>
                                         <Link href={'/register'} className="px-3 bg-transparent text-white border-2 border-slate-600 hover:bg-slate-600 rounded-full hover:shadow-lg transition-all">Register</Link>
                                    </div>
                               }

@@ -12,7 +12,7 @@ const Departments = () => {
                         <Image className=" object-cover group-hover:scale-110 duration-300   w-full  h-full rounded-sm" src={coumputer} alt="Image" />
 
                         <div className="absolute inset-0 flex flex-col bg-[#0f0e0e7d] cursor-pointer items-center justify-center text-center w-full h-full textDiv">
-                            <h3 className="text-white text-2xl font-semibold">Conputer</h3>
+                            <h3 className="text-white text-2xl font-semibold">Computer</h3>
                             <span className="text-white text-md">65 Books</span>
                         </div>
                     </div>
@@ -20,7 +20,7 @@ const Departments = () => {
                         <Image className=" object-cover group-hover:scale-110 duration-300   w-full  h-full rounded-sm" src={coumputer} alt="Image" />
 
                         <div className="absolute inset-0 flex flex-col bg-[#0f0e0e7d] cursor-pointer items-center justify-center text-center w-full h-full textDiv">
-                            <h3 className="text-white text-2xl font-semibold">Conputer</h3>
+                            <h3 className="text-white text-2xl font-semibold">Computer</h3>
                             <span className="text-white text-md">65 Books</span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ const Departments = () => {
                         <Image className=" object-cover group-hover:scale-110 duration-300   w-full  h-full rounded-sm" src={coumputer} alt="Image" />
 
                         <div className="absolute inset-0 flex flex-col bg-[#0f0e0e7d] cursor-pointer items-center justify-center text-center w-full h-full textDiv">
-                            <h3 className="text-white text-2xl font-semibold">Conputer</h3>
+                            <h3 className="text-white text-2xl font-semibold">Computer</h3>
                             <span className="text-white text-md">65 Books</span>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const Departments = () => {
                         <Image className=" object-cover group-hover:scale-110 duration-300   w-full  h-full rounded-sm" src={coumputer} alt="Image" />
 
                         <div className="absolute inset-0 flex flex-col bg-[#0f0e0e7d] cursor-pointer items-center justify-center text-center w-full h-full textDiv">
-                            <h3 className="text-white text-2xl font-semibold">Conputer</h3>
+                            <h3 className="text-white text-2xl font-semibold">Computer</h3>
                             <span className="text-white text-md">65 Books</span>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ const Departments = () => {
                         <Image className=" object-cover group-hover:scale-110 duration-300   w-full  h-full rounded-sm" src={coumputer} alt="Image" />
 
                         <div className="absolute inset-0 flex flex-col bg-[#0f0e0e7d] cursor-pointer items-center justify-center text-center w-full h-full textDiv">
-                            <h3 className="text-white text-2xl font-semibold">Conputer</h3>
+                            <h3 className="text-white text-2xl font-semibold">Computer</h3>
                             <span className="text-white text-md">65 Books</span>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ const Departments = () => {
                         <Image className=" object-cover group-hover:scale-110 duration-300   w-full  h-full rounded-sm" src={coumputer} alt="Image" />
 
                         <div className="absolute inset-0 flex flex-col bg-[#0f0e0e7d] cursor-pointer items-center justify-center text-center w-full h-full textDiv">
-                            <h3 className="text-white text-2xl font-semibold">Conputer</h3>
+                            <h3 className="text-white text-2xl font-semibold">Computer</h3>
                             <span className="text-white text-md">65 Books</span>
                         </div>
                     </div>

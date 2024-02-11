@@ -74,8 +74,8 @@ const Hero = () => {
                          </Swiper>
                     </div>
 
-                    <div className="arrow absolute     top-1/2  right-10 md:20 z-30  w-full ">
-                         <div className=" flex  justify-end items-center  gap-5 ">
+                    <div className="arrow absolute     top-1/2  md:20 z-30  w-full ">
+                         <div className=" flex  justify-between items-center  gap-5  px-5 ">
                               <div
                                    className="flex cursor-pointer text-white hover:text-red-600 justify-center items-center shadow h-[30px] b  duration-150  rounded-md "
                                    onClick={goPrev}
