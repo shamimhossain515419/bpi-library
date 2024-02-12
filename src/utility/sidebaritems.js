@@ -20,61 +20,38 @@ import { RiFontSize } from "react-icons/ri";
 import { AiOutlineStock } from "react-icons/ai";
 import { MdManageHistory } from "react-icons/md";
 import { CgShutterstock } from "react-icons/cg";
+import { CiHome } from "react-icons/ci";
 
 export const sidebar = [
   {
     id: 1,
     name: "dashboard",
-    path: "/",
-    Icon: <SquaresFour size={24}></SquaresFour>,
+    path: "/account",
+    Icon: <CiHome size={24}></CiHome>,
   },
   {
     id: 2,
-    name: "Setup",
-    path: "/product",
+    name: "Books",
+    path: "/account/books",
     Icon: <MdOutlineWifiProtectedSetup size={24} />,
     sub: [
       {
         id: 3,
-        name: "group",
-        path: "/group",
+        name: "Apply books",
+        path: "/account/apply-books",
         Icon: <FaLayerGroup />,
       },
       {
         id: 4,
-        name: "brand",
-        path: "/brand",
+        name: "Approved Books  ",
+        path: "/account/approved",
         Icon: <MdBrandingWatermark size={24} />,
       },
       {
         id: 5,
-        name: "category",
-        path: "/category",
+        name: "Store books",
+        path: "/account/store-books",
         Icon: <BiCategoryAlt size={24} />,
-      },
-      {
-        id: 6,
-        name: "sub category",
-        path: "/sub-category",
-        Icon: <PiSubtractSquareFill size={24} />,
-      },
-      {
-        id: 7,
-        name: " color",
-        path: "/color",
-        Icon: <IoIosColorPalette size={24} />,
-      },
-      {
-        id: 7,
-        name: " size",
-        path: "/size",
-        Icon: <RiFontSize size={24} />,
-      },
-      {
-        id: 4,
-        name: "product",
-        path: "/product",
-        Icon: <ShoppingBagOpen size={24}></ShoppingBagOpen>,
       },
     ],
   },
@@ -120,7 +97,7 @@ export const sidebar = [
   {
     id: 5,
     name: "user",
-    path: "/user",
+    path: "account/all-users",
     Icon: <Users size={24}></Users>,
   },
   {
