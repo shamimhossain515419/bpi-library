@@ -40,8 +40,6 @@ model Books {
     name        String    @unique
     title       String // Title of the book
     image1      String // Optional image link 1
-    image2      String? // Image link 2
-    image3      String? // Image link 2
     price       Float? // Optional price of the book
     category    String // Category of the book
     writer_name String // Name of the book's writer

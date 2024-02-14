@@ -24,7 +24,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "hips.hearstapps.com",
+        hostname: "www.whitmorerarebooks.com",
       },
       {
         protocol: "https",

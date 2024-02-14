@@ -97,7 +97,7 @@ export const sidebar = [
   {
     id: 5,
     name: "user",
-    path: "account/all-users",
+    path: "/account/all-users",
     Icon: <Users size={24}></Users>,
   },
   {
@@ -111,5 +111,28 @@ export const sidebar = [
     name: " Sign Up",
     path: "/login",
     Icon: <UserPlus size={24}></UserPlus>,
+  },
+];
+
+export const department = [
+  {
+    id: 1,
+    name: "Computer",
+  },
+  {
+    id: 2,
+    name: "Civil",
+  },
+  {
+    id: 3,
+    name: "Power",
+  },
+  {
+    id: 4,
+    name: "Electrical",
+  },
+  {
+    id: 5,
+    name: "Electronics",
   },
 ];

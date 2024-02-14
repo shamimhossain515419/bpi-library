@@ -40,6 +40,7 @@ export async function POST(req) {
       });
     }
   } catch (e) {
+    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,
