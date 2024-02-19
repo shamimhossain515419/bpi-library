@@ -45,7 +45,7 @@ const Navbar = () => {
                                         <div className=" hidden lg:flex items-center gap-3  space-x-5">
                                              <Link
                                                   className={` rounded-lg  hover:text-primary relative group  duration-200 font-medium transition-all`}
-                                                  href={"/all-books"}
+                                                  href={"/all-books/all"}
                                              >
                                                   All Books{" "}
                                                   <span className="ease absolute left-0  -bottom-1  h-0 w-0 border-b border-primary transition-all duration-200 group-hover:w-full"></span>{" "}
@@ -166,7 +166,7 @@ const Navbar = () => {
 
                <CustomToastMessage></CustomToastMessage>
 
-               <UserModal openUserModal={openUserModal}></UserModal>
+               <UserModal setOpenUserModal={setOpenUserModal} openUserModal={openUserModal}></UserModal>
 
 
           </div>

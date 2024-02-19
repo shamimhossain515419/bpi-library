@@ -37,7 +37,7 @@ const UserModal = ({ openUserModal, setOpenUserModal }) => {
                 <div className=" m-3 rounded-md p-2 ">
 
 
-                    <Link href={'/account'} className="flex items-center justify-between p-1 mb-0.5 hover:bg-tertiary rounded-t-md rounded-b-md ">
+                    <Link onClick={() => setOpenUserModal(false)} href={'/account'} className="flex items-center justify-between p-1 mb-0.5 hover:bg-tertiary rounded-t-md rounded-b-md ">
 
                         <p ><span className="font-semibold text-primary ms-1.5 me-10"> {user?.displayName} </span></p>
                         {
@@ -49,17 +49,7 @@ const UserModal = ({ openUserModal, setOpenUserModal }) => {
 
 
 
-                <a href="#">
-                    <div className="p-3 flex items-center justify-between hover:bg-tertiary   text-gray-600 hover:text-primary">
-                        <div className="flex items-center">
-                            <div className="bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center">
-                                <FaFacebook></FaFacebook>
-                            </div>
-                            <span className="ms-2  font-semibold">Meta Business Suite</span>
-                        </div>
-                        <i className="fa-solid fa-chevron-right"></i>
-                    </div>
-                </a>
+
 
                 <a href="#">
                     <div className="p-3 flex items-center justify-between hover:bg-tertiary   text-gray-600 hover:text-primary">
@@ -72,43 +62,6 @@ const UserModal = ({ openUserModal, setOpenUserModal }) => {
                         <i className="fa-solid fa-chevron-right"></i>
                     </div>
                 </a>
-
-                <a href="#">
-                    <div className="p-3 flex items-center justify-between hover:bg-tertiary   text-gray-600 hover:text-primary">
-                        <div className="flex items-center">
-                            <div className="bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center">
-                                <FaFacebook></FaFacebook>
-                            </div>
-                            <span className="ms-2 font-semibold">Help & support</span>
-                        </div>
-                        <i className="fa-solid fa-chevron-right"></i>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div className="p-3 flex items-center justify-between hover:bg-tertiary   text-gray-600 hover:text-primary">
-                        <div className="flex items-center">
-                            <div className="bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center">
-                                <FaFacebook></FaFacebook>
-                            </div>
-                            <span className="ms-2 font-semibold">Display & accessibility</span>
-                        </div>
-                        <i className="fa-solid fa-chevron-right"></i>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div className="p-3 flex items-center justify-between hover:bg-tertiary   text-gray-600 hover:text-primary">
-                        <div className="flex items-center">
-                            <div className="bg-gray-300 rounded-full h-8 w-8 flex items-center justify-center">
-                                <FaFacebook></FaFacebook>
-                            </div>
-                            <span className="ms-2 font-semibold">Give feedback</span>
-                        </div>
-                        <i className="fa-solid fa-chevron-right"></i>
-                    </div>
-                </a>
-
                 <div onClick={handleLogout} >
                     <div className="p-3 flex items-center cursor-pointer justify-between hover:bg-tertiary   text-gray-600 hover:text-primary">
                         <div className="flex items-center">

@@ -9,21 +9,24 @@ export async function GET(req) {
     const name = searchParams.get("name") || "";
     const title = searchParams.get("title") || "";
     const department = searchParams.get("department") || "";
-    console.log(title);
-    console.log(department);
-    console.log(name);
-
     const getAllData = await prisma.books.findMany({
+      include: {
+        UserBooks: {
+          include: {
+            user: true,
+          },
+        },
+      },
       where: {
         AND: [
           {
             title: {
-              contains: "", // Replace with the title you're searching for
+              contains: title, // Replace with the title you're searching for
             },
           },
           {
             name: {
-              contains: "", // Replace with the author's name you're searching for
+              contains: name, // Replace with the author's name you're searching for
             },
           },
           {

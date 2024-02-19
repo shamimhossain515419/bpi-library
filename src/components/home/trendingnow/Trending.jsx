@@ -17,7 +17,7 @@ const Trending = () => {
         <div>
             <Container>
                 <div className=" py-3">
-                    <SectionTitle title={"Trending Now"} path={"/"} ></SectionTitle>
+                    <SectionTitle title={"Trending Now"} path={"/all-books/new"} ></SectionTitle>
                 </div>
 
                 <div className=" pb-10">

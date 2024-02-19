@@ -1,8 +1,8 @@
 import Pagination from "@/components/Pagination/Pagination";
 import AllProducts from "@/components/allProdcuts/AllProducts";
-import PrimaryCart from "@/components/carts/primaryCart";
 import FilterSection from "@/components/filter/FilterSection";
 import Container from "@/share/container/Container";
+
 const page = () => {
     return (
         <div>

@@ -4,22 +4,21 @@ datasource db {
 }
 
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    providerFeature = ["orderByRelation"]
 }
 
-model Product {
-    id          String   @id @default(auto()) @map("_id") @db.ObjectId
-    image       String?
-    title       String
-    price       Float
-    category    String
-    description String?
-    createdAt   DateTime @default(now())
+model Post {
+    id         String  @id @default(auto()) @map("_id") @db.ObjectId
+    title      String
+    userId     String  @db.ObjectId
+    User       User    @relation(fields: [userId], references: [id])
+    userDataId String? @db.ObjectId
 }
 
 model User {
-    id         String    @id @default(auto()) @map("_id") @db.ObjectId
-    email      String    @unique
+    id         String      @id @default(auto()) @map("_id") @db.ObjectId
+    email      String      @unique
     name       String?
     department String?
     isRole     String?
@@ -30,14 +29,15 @@ model User {
     session    String?
     reg        Int?
     phone      Int?
-    createdAt  DateTime  @default(now())
+    createdAt  DateTime    @default(now())
     Comment    Comment[]
+    UserBooks  UserBooks[]
+    Post       Post[]
 }
 
-// Books model represents information about books
 model Books {
-    id          String    @id @default(auto()) @map("_id") @db.ObjectId
-    name        String    @unique
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    name        String      @unique
     title       String // Title of the book
     image1      String // Optional image link 1
     price       Float? // Optional price of the book
@@ -46,8 +46,18 @@ model Books {
     quantity    Int // Quantity of books available
     description String? // Optional book description
     department  String?
-    createdAt   DateTime  @default(now()) // Creation timestamp
+    createdAt   DateTime    @default(now()) // Creation timestamp
     comment     Comment[] // Array of comments associated with the book
+    UserBooks   UserBooks[]
+}
+
+model UserBooks {
+    id     String  @id @default(auto()) @map("_id") @db.ObjectId
+    userId String  @db.ObjectId
+    status Boolean
+    bookId String
+    user   User    @relation(fields: [userId], references: [id])
+    book   Books   @relation(fields: [bookId], references: [id])
 }
 
 // Comment model represents comments associated with books

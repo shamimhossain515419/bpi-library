@@ -9,7 +9,26 @@ export const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    RemoveBook: builder.mutation({
+      query: (data) => ({
+        url: `books/remove?id=${dada}`,
+        method: "DELETE",
+        body: data,
+      }),
+    }),
+
+    getAllboks: builder.query({
+      query: (id) => `books/get-all?${id}`,
+    }),
+    getSingleBook: builder.query({
+      query: (id) => `books/single-by-id?id=${id}`,
+    }),
   }),
 });
 
-export const { useAddnewbookMutation } = authApi;
+export const {
+  useGetAllboksQuery,
+  useRemoveBookMutation,
+  useAddnewbookMutation,
+  useGetSingleBookQuery,
+} = authApi;

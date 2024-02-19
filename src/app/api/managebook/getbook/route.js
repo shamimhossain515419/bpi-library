@@ -5,13 +5,18 @@ export const dynamic = "force-dynamic";
 
 export async function GET(req, res) {
   try {
-    const allUser = await prisma.user.findMany();
+    const userbookdata = await prisma.userBooks.findMany({
+      include: {
+        user: true,
+        book: true,
+      },
+    });
 
     return NextResponse.json({
       statusCode: 200,
       success: true,
-      message: "Wow successfully get all users ",
-      data: allUser,
+      message: "Wow successfully get all userbook ",
+      data: userbookdata,
     });
   } catch (e) {
     return NextResponse.json({

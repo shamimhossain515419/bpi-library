@@ -1,11 +1,19 @@
+"use client"
+
 import SecondaryCart from '@/components/carts/SecondaryCart';
 import SectionTitle from '@/components/utilirycomponents/SectionTitle';
+import { useGetAllboksQuery } from '@/redux/features/books/BooksAPI';
+
 import Container from '@/share/container/Container';
 import Image from 'next/image';
 import React from 'react';
 import { MdOutlineStar } from 'react-icons/md';
 
 const LatastBooks = () => {
+
+    const { data: prodcut, isLoading, error } = useGetAllboksQuery("")
+    console.log(prodcut);
+
     return (
         <div className=' py-5'>
             <Container>

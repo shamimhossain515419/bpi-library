@@ -6,7 +6,10 @@ export const dynamic = "force-dynamic";
 export async function DELETE(req) {
   try {
     const { searchParams } = new URL(req.url);
+    console.log(req);
+
     const id = searchParams.get("id");
+    console.log(id);
 
     const deleteBooks = await prisma.books.delete({
       where: {

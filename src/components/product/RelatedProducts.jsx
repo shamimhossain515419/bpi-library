@@ -1,8 +1,5 @@
 
 'use client';
-import PrimaryCart from "@/components/carts/primaryCart";
-import SectionTitle from "@/components/utilirycomponents/SectionTitle";
-import Container from "@/share/container/Container";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -11,13 +8,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { products } from "@/utility/prodcut";
+import Container from '@/share/container/Container';
+import SectionTitle from '../utilirycomponents/SectionTitle';
+import PrimaryCart from '../carts/primaryCart';
 
-const Popular = () => {
+const RelatedProducts = ({ category }) => {
     return (
         <div>
             <Container>
                 <div className=" py-3">
-                    <SectionTitle title={"Popular Books"} path={"/all-books/popular"} ></SectionTitle>
+                    <SectionTitle title={"Related Product"} path={`/all-books/${category}`} ></SectionTitle>
                 </div>
 
                 <div className=" pb-10">
@@ -73,4 +73,4 @@ const Popular = () => {
     );
 };
 
-export default Popular;
+export default RelatedProducts;

@@ -11,13 +11,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { products } from "@/utility/prodcut";
+import { useGetAllboksQuery } from "@/redux/features/books/BooksAPI";
 
 const Bestreading = () => {
+
+    const { data: prodcut, isLoading, error } = useGetAllboksQuery("")
     return (
         <div>
             <Container>
                 <div className=" py-3">
-                    <SectionTitle title={"Best Reading Books"} path={"/"} ></SectionTitle>
+                    <SectionTitle title={"Best Reading Books"} path={"/all-books/best"} ></SectionTitle>
                 </div>
 
                 <div className=" pb-10">
@@ -57,7 +60,7 @@ const Bestreading = () => {
                         className="mySwiper overflow-hidden "
                     >
                         {
-                            products?.map((product, index) => <SwiperSlide key={index} className="  px-2 " >
+                            prodcut?.data?.map((product, index) => <SwiperSlide key={index} className="  px-2 " >
                                 <PrimaryCart product={product}></PrimaryCart>
                             </SwiperSlide>)
                         }
