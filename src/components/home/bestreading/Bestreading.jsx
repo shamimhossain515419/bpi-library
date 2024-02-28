@@ -10,7 +10,6 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { products } from "@/utility/prodcut";
 import { useGetAllboksQuery } from "@/redux/features/books/BooksAPI";
 
 const Bestreading = () => {

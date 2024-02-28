@@ -11,8 +11,10 @@ import { products } from "@/utility/prodcut";
 import Container from '@/share/container/Container';
 import SectionTitle from '../utilirycomponents/SectionTitle';
 import PrimaryCart from '../carts/primaryCart';
+import { useGetAllboksQuery } from '@/redux/features/books/BooksAPI';
 
 const RelatedProducts = ({ category }) => {
+    const { data: prodcut, isLoading, error } = useGetAllboksQuery("")
     return (
         <div>
             <Container>
@@ -57,7 +59,7 @@ const RelatedProducts = ({ category }) => {
                         className="mySwiper overflow-hidden "
                     >
                         {
-                            products?.map((product, index) => <SwiperSlide key={index} className="  px-2 " >
+                            prodcut?.data?.map((product, index) => <SwiperSlide key={index} className="  px-2 " >
                                 <PrimaryCart product={product}></PrimaryCart>
                             </SwiperSlide>)
                         }

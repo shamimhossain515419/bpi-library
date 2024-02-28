@@ -11,7 +11,7 @@ export const authApi = apiSlice.injectEndpoints({
     }),
     RemoveBook: builder.mutation({
       query: (data) => ({
-        url: `books/remove?id=${dada}`,
+        url: `books/remove?id=${data}`,
         method: "DELETE",
         body: data,
       }),

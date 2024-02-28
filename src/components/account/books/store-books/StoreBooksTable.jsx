@@ -22,9 +22,6 @@ const StoreBooksTable = () => {
     const onClickTwo = () => {
         setShowModal(!showModal);
     };
-
-    console.log(removeData, error,);
-
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -36,7 +33,6 @@ const StoreBooksTable = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log("first");
                 console.log(id);
                 RemoveBook(id)
             }
@@ -53,8 +49,9 @@ const StoreBooksTable = () => {
             refetch()
         }
     }, [removeData, refetch])
-
     //  crate context
+    console.log(getAllBooks);
+
     let content;
     // sat loading 
     if (isLoading)
@@ -77,6 +74,7 @@ const StoreBooksTable = () => {
                 <Product_modal
                     onClickTwo={onClickTwo}
                     showModal={showModal}
+                    setShowModal={setShowModal}
                 ></Product_modal>
                 <Table showCheckbox={false}>
                     <Table.Caption>
@@ -123,9 +121,7 @@ const StoreBooksTable = () => {
                                             <div className="flex items-center gap-2">
                                                 <Avatar
                                                     shape="circle"
-                                                    img={
-                                                        "https://i.ibb.co/D5GnNvw/Whats-App-Image-2023-11-26-at-12-37-03-bd5f6e7b-1.jpg"
-                                                    }
+                                                    img={book?.image1}
                                                     size="md"
                                                 />
                                                 <div>

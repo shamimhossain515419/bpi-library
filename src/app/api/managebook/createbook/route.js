@@ -16,10 +16,11 @@ export async function POST(req) {
         message: ` user and book do not exist`,
       });
     }
+    console.log(userId, bookId);
+
     // Check if the user and book exist
     const user = await prisma.user.findUnique({ where: { id: userId } });
     const book = await prisma.books.findUnique({ where: { id: bookId } });
-
     if (!user || !book) {
       return NextResponse.json({
         stateCode: 404,

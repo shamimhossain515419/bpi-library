@@ -12,7 +12,7 @@ import { MdOutlineStar } from 'react-icons/md';
 const LatastBooks = () => {
 
     const { data: prodcut, isLoading, error } = useGetAllboksQuery("")
-    console.log(prodcut);
+
 
     return (
         <div className=' py-5'>

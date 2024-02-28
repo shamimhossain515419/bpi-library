@@ -56,45 +56,6 @@ export const sidebar = [
     ],
   },
   {
-    id: 3,
-    name: "Stock",
-    path: "/stock",
-    Icon: <CgShutterstock size={24} />,
-    sub: [
-      {
-        id: 3,
-        name: " Stock opening",
-        path: "/opening-stock",
-        Icon: <AiOutlineStock />,
-      },
-      {
-        id: 3,
-        name: "Stock Manage",
-        path: "/stock-manage",
-        Icon: <MdManageHistory />,
-      },
-      {
-        id: 3,
-        name: "Stock report",
-        path: "/stock-report",
-        Icon: <MdManageHistory />,
-      },
-      {
-        id: 3,
-        name: "Stock purchase",
-        path: "/purchase",
-        Icon: <MdManageHistory />,
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Inbox",
-    path: "/inbox",
-    Icon: <Chat size={24}></Chat>,
-  },
-
-  {
     id: 5,
     name: "user",
     path: "/account/all-users",
@@ -102,15 +63,9 @@ export const sidebar = [
   },
   {
     id: 6,
-    name: "Sign In",
+    name: "Sign  Out",
     path: "/sign",
     Icon: <SignIn size={24}></SignIn>,
-  },
-  {
-    id: 7,
-    name: " Sign Up",
-    path: "/login",
-    Icon: <UserPlus size={24}></UserPlus>,
   },
 ];
 

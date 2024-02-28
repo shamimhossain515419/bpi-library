@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <NextTopLoader></NextTopLoader>
         <AuthProvider>
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            <div>{children}</div>
+          </ReduxProvider>
         </AuthProvider>
       </body>
     </html>

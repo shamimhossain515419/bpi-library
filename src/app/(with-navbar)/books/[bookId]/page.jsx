@@ -1,17 +1,59 @@
 "use client"
 
+import { GlobalContext } from "@/AuthProvider/AuthProvider";
 import RelatedProducts from "@/components/product/RelatedProducts";
+import { useGetSingleIserQuery } from "@/redux/features/auth/authApi";
 import { useGetSingleBookQuery } from "@/redux/features/books/BooksAPI";
+import { useAddbookMutation, useGetCartQuery } from "@/redux/features/managebooks/ManageBooksApi";
 import Container from "@/share/container/Container";
 import Image from "next/image";
+import Link from "next/link";
+import { useContext, useEffect } from "react";
+import { IoReloadOutline } from "react-icons/io5";
+import Swal from "sweetalert2";
 
 const Page = ({ params }) => {
     const { bookId } = params || {};
-    const { data: sngleProdcut, isLoading, error } = useGetSingleBookQuery(bookId)
-    const { name, writer_name, description } = sngleProdcut?.data || {}
+    const { data: sngleProdcut } = useGetSingleBookQuery(bookId)
+    const { id, name, writer_name, description } = sngleProdcut?.data || {};
+    const { user } = useContext(GlobalContext);
+    const [addbook, { data: resultAddCart, isLoading, error }] = useAddbookMutation();
+    const { data: userData, } = useGetSingleIserQuery(user?.email);
+
+    const userinfo = userData?.data;
+    const { data: getCart } = useGetCartQuery(userinfo?.id)
+    //  add submit
+    const handleSubmit = (id) => {
+        const data = { bookId: id, userId: userinfo?.id }
+        if (user?.email) {
+            addbook(data)
+        } else {
+            Swal.fire({
+                title: "Please login first",
+                icon: "error",
+            })
+        }
+    }
+
+
+    //  success  add cart 
+    useEffect(() => {
+        if (resultAddCart?.success) {
+            Swal.fire({
+                icon: "success",
+                title: `${resultAddCart?.message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+
+    }, [resultAddCart])
+
+    const cartproduct = getCart?.data?.find(item => item?.book?.id === id);
+
 
     return (
-        <div>
+        <>
             <Container>
                 <div>
                     <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -116,9 +158,15 @@ const Page = ({ params }) => {
                                     </p>
                                     <hr />
                                     <div className="py-5 ">
-                                        <button className=" w-full block  py-2 px-5  rounded-3xl bg-primary hover:bg-opacity-70">
-                                            <span className="text-2xl text-white">Add to Cart</span>
-                                        </button>
+                                        {
+                                            cartproduct ? <Link href={'/checkout'} className="w-full block  py-2 px-5 rounded-3xl bg-primary hover:bg-opacity-90 text-white text-[20px] text-center"> Please checkout </Link> : <button onClick={() => handleSubmit(id)} className="w-full block  py-2 px-5 rounded-3xl bg-primary hover:bg-opacity-90">
+                                                {
+                                                    isLoading ? <span className="flex items-center justify-center "> <IoReloadOutline className="text-white animate-spin text-[20px]  text-center  " />  </span> : <span className="text-2xl text-white">Add to Cart</span>
+                                                }
+
+                                            </button>
+                                        }
+
                                     </div>
                                     <hr />
                                     <p className="mb-6">
@@ -263,7 +311,7 @@ const Page = ({ params }) => {
                                             next time I comment.
                                         </label>
                                     </div>
-                                    <button className="mt-4 w-[8rem] h-12 p-2 font-semibold rounded-3xl text-white hover:opacity-70 bg-primary">
+                                    <button className="mt-4 w-[8rem] h-12 p-2 font-semibold rounded-3xl text-white hover:opacity-80 bg-primary">
                                         Submit
                                     </button>
                                 </div>
@@ -273,7 +321,7 @@ const Page = ({ params }) => {
                 </div>
             </Container>
             <RelatedProducts />
-        </div>
+        </>
     );
 };
 

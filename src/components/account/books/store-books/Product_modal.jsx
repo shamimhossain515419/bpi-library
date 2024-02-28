@@ -47,13 +47,13 @@ async function helperForUPloadingImageToFirebase(file) {
     });
 }
 
-export const Product_modal = ({ onClickTwo, showModal }) => {
+export const Product_modal = ({ onClickTwo, setShowModal, showModal }) => {
     const [imageLoader, setimageLoader] = useState(false);
     const [image1, setImage1] = useState("");
     const [error, setError] = useState("");
     const [
         addnewbook,
-        { isLoading, data: resultAddnewbooks, error: uploadError },
+        { isLoading, data: resultAddnewbooks, isSuccess, error: uploadError },
     ] = useAddnewbookMutation();
 
     const AddProductHandler = (e) => {
@@ -84,10 +84,11 @@ export const Product_modal = ({ onClickTwo, showModal }) => {
         setError("Image Not Found");
     };
     useEffect(() => {
-        if (resultAddnewbooks?.success) {
+        if (resultAddnewbooks?.success && isSuccess) {
             toast.success("Added new books successfully");
+            setShowModal(false)
         }
-    }, [resultAddnewbooks]);
+    }, [resultAddnewbooks, setShowModal, isSuccess]);
 
     const handleImage = async (event) => {
         setimageLoader(true);
@@ -99,6 +100,7 @@ export const Product_modal = ({ onClickTwo, showModal }) => {
             setimageLoader(false);
         }
     };
+
 
 
     return (
@@ -218,15 +220,20 @@ export const Product_modal = ({ onClickTwo, showModal }) => {
                                             </Button>
                                         </>
                                     ) : (
-                                        <div className="from_group py-1">
-                                            <Label htmlFor="#id-9" value=" Image Book " />
-                                            <input
-                                                className=" block  py-2 rounded px-3 border w-full border-gray-700"
-                                                onChange={handleImage}
-                                                type="file"
-                                                name="image1"
-                                            />
+                                        <div>
+                                            {!image1 &&
+                                                <div className="from_group py-1">
+                                                    <Label htmlFor="#id-9" value=" Image Book " />
+                                                    <input
+                                                        className=" block  py-2 rounded px-3 border w-full border-gray-700"
+                                                        onChange={handleImage}
+                                                        type="file"
+                                                        name="image1"
+                                                    />
+                                                </div>
+                                            }
                                         </div>
+
                                     )}
                                 </div>
 

@@ -11,8 +11,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { products } from "@/utility/prodcut";
+import { useGetAllboksQuery } from "@/redux/features/books/BooksAPI";
 
 const Popular = () => {
+    const { data: prodcut, isLoading, error } = useGetAllboksQuery("")
     return (
         <div>
             <Container>
@@ -57,7 +59,7 @@ const Popular = () => {
                         className="mySwiper overflow-hidden "
                     >
                         {
-                            products?.map((product, index) => <SwiperSlide key={index} className="  px-2 " >
+                            prodcut?.data?.map((product, index) => <SwiperSlide key={index} className="  px-2 " >
                                 <PrimaryCart product={product}></PrimaryCart>
                             </SwiperSlide>)
                         }

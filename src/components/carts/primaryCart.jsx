@@ -6,8 +6,8 @@ const PrimaryCart = ({ product }) => {
 
     return (
         <div className=' md:w-[220px] w-full'>
-            <div className=' w-full'>
-                <Image className=' w-full rounded-[15px]' width={100} height={100} src={product?.image1} alt='image'></Image>
+            <div className=' w-full h-[290px]'>
+                <Image className=' w-full h-full rounded-[15px]' width={100} height={100} src={product?.image1} alt='image'></Image>
             </div>
             <div className=' pt-2'>
                 <Link href={`/books/${product?.id}`} className='text-[14px]   lg:text-[17px] hover:text-primary d duration-200 font-bold ' > {product?.name} </Link>

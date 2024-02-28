@@ -55,7 +55,7 @@ model UserBooks {
     id     String  @id @default(auto()) @map("_id") @db.ObjectId
     userId String  @db.ObjectId
     status Boolean
-    bookId String
+    bookId String  @db.ObjectId
     user   User    @relation(fields: [userId], references: [id])
     book   Books   @relation(fields: [bookId], references: [id])
 }
