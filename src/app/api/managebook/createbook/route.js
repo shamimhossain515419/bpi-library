@@ -16,8 +16,6 @@ export async function POST(req) {
         message: ` user and book do not exist`,
       });
     }
-    console.log(userId, bookId);
-
     // Check if the user and book exist
     const user = await prisma.user.findUnique({ where: { id: userId } });
     const book = await prisma.books.findUnique({ where: { id: bookId } });
@@ -28,6 +26,7 @@ export async function POST(req) {
         message: ` user and book do not exist`,
       });
     }
+    console.log(book, user);
 
     // Add the book to the user
     const userbookdata = await prisma.userBooks.create({ data });

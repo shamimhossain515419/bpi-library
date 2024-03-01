@@ -1,15 +1,18 @@
+"use client"
+import { removeItem } from "@/redux/features/cart/cartSlice";
 import Image from "next/image";
 import React from "react";
 import { IoMdClose } from "react-icons/io";
+import { useDispatch } from "react-redux";
 
-const CheckoutCart = ({ book }) => {
-    const { image1, name, price, department, category, writer_name } = book?.book;
-    console.log(book?.book);
-
+const CheckoutCart = ({ book, selectBook, setSelectBook }) => {
+    const { image1, name, price, id, department, category, writer_name } = book;
+    cancelIdleCallback
+    const dispatch = useDispatch()
     return (
         <div>
             <div className=" lg:pt-10">
-                <div className="  relative">
+                <div onClick={() => setSelectBook(id)} className={`${selectBook == id ? 'border border-primary' : ""} relative p-2 rounded-lg`}>
                     <div className="   grid  grid-cols-2  relative    gap-3 py-4">
                         <div className=" w-full">
                             <Image
@@ -38,7 +41,7 @@ const CheckoutCart = ({ book }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className=" absolute top-3 cursor-pointer  duration-150 right-3 hover:bg-[#F5F5F5] p-[2px] rounded-sm">
+                        <div onClick={() => dispatch(removeItem(id))} className=" absolute top-3 cursor-pointer  duration-150 right-3 hover:bg-[#F5F5F5] p-[2px] rounded-sm">
                             <IoMdClose size={24} />
                         </div>
                     </div>

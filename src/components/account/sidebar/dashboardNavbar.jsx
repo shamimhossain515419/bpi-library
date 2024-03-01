@@ -19,12 +19,12 @@ const DashboardNavbar = () => {
                         role="navigation"
                     >
                         {/*      <!-- Brand logo --> */}
-                        <a
+                        <Link href={"/account"}
                             id="WindUI"
                             aria-label="WindUI logo"
                             aria-current="page"
                             className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
-                            href="javascript:void(0)"
+
                         >
                             <svg
                                 width="300"
@@ -47,8 +47,8 @@ const DashboardNavbar = () => {
                                     fill="rgba(255,255,255,.2)"
                                 />
                             </svg>
-                            Brand
-                        </a>
+                            BPI Library
+                        </Link>
                         {/*      <!-- Mobile trigger --> */}
                         <button
                             className={`relative order-10 block h-10 w-10 self-center lg:hidden

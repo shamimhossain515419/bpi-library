@@ -1,33 +1,20 @@
 "use client";
+import { removeItem } from "@/redux/features/cart/cartSlice";
 import { useRemoveCartBookMutation } from "@/redux/features/managebooks/ManageBooksApi";
 import Image from "next/image";
-import { useEffect } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import Swal from "sweetalert2";
 
 const Side_card = ({ books, refetch }) => {
   const dispatch = useDispatch();
-  const { image1, name } = books?.book
+  const { image1, name } = books
 
-  const [removeCartBook, { data: removeCart, error }] = useRemoveCartBookMutation();
+
   const handleDelete = (id) => {
-    removeCartBook(id);
+    dispatch(removeItem(id))
 
   }
-  useEffect(() => {
-    if (removeCart?.success) {
-      refetch()
-      Swal.fire({
-        icon: "success",
-        title: "Book removed from cart",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
-  }, [removeCart, refetch])
-  console.log(removeCart,);
-  console.log(error);
+
 
   return (
     <div className=" bg-[#FFF] rounded-[3px] shadow-md  py-3 px-2 my-1">

@@ -1,17 +1,33 @@
+import { removeItem } from '@/redux/features/cart/cartSlice';
+import { useAddbookMutation } from '@/redux/features/managebooks/ManageBooksApi';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
-const Summary = ({ books }) => {
-
-    console.log(books);
-    const totalPrice = books?.reduce((acc, item) => {
-        // Multiply price and quantity for each item and add to accumulator
-        return acc + (parseFloat(item?.book?.price));
-    }, 0);
-    console.log(totalPrice);
-
-    const DeliveryCharge = (totalPrice * 5) / 100;
-    console.log(DeliveryCharge);
+const Summary = ({ books, userinfo, selectBook }) => {
+    const findProduct = books?.find((item) => item?.id == selectBook);
+    const [addbook, { data: resultAddbook, isLoading, isSuccess, error }] = useAddbookMutation()
+    const DeliveryCharge = (findProduct?.price * 5) / 100;
+    const router = useRouter();
+    const dispatch = useDispatch()
+    const handleSubmit = () => {
+        if (!selectBook) {
+            toast.error("please select a book")
+        } else if (!userinfo?.id) {
+            router.push("/login")
+        } else {
+            const data = { bookId: selectBook, userId: userinfo?.id, status: false };
+            addbook(data)
+        }
+    }
+    useEffect(() => {
+        if (resultAddbook) {
+            toast.success(resultAddbook?.message);
+            dispatch(removeItem(selectBook))
+        }
+    }, [resultAddbook, selectBook]);
 
     return (
         <div>
@@ -26,7 +42,7 @@ const Summary = ({ books }) => {
                         <div className=' pt-6'>
                             <div className=' flex justify-between gap-2 items-center'>
                                 <p>Subtotal</p>
-                                <span>${totalPrice ? totalPrice : "Free"}</span>
+                                <span>${findProduct?.price ? findProduct?.price : "Free"}</span>
                             </div>
                             <div className='  py-3 flex justify-between gap-2 items-center'>
                                 <p>Delivery</p>
@@ -36,11 +52,15 @@ const Summary = ({ books }) => {
 
                             <div className='  py-3 flex justify-between gap-2 items-center'>
                                 <p className=' font-bold'>Total</p>
-                                <p>BD:  <span className=' font-bold'>${totalPrice ? totalPrice + DeliveryCharge : " All Free"}</span></p>
+                                <p>BD:  <span className=' font-bold'>${findProduct?.price ? findProduct?.price + DeliveryCharge : " All Free"}</span></p>
                             </div>
                         </div>
                         <div className=' py-2 w-full'>
-                            <button className=' w-full text-white block text-center  duration-200      bg-primary  px-2 py-[10px] hover:opacity-80 rounded-lg text-[16px] font-bold'>Go To Checkout</button>
+                            <button onClick={handleSubmit} className=' w-full text-white block text-center  duration-200      bg-primary  px-2 py-[10px] hover:opacity-80 rounded-lg text-[16px] font-bold'>
+                                {
+                                    isLoading ? <>loading...</> : <>Go To Checkout</>
+                                }
+                            </button>
                         </div>
                     </div>
                 </div>

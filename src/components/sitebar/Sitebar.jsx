@@ -11,17 +11,17 @@ import shopImage from "../../../public/image/icons/Vector.svg";
 import Side_card from "./Side_card";
 import { GlobalContext } from "@/AuthProvider/AuthProvider";
 import { useGetSingleIserQuery } from "@/redux/features/auth/authApi";
-import { useGetCartQuery } from "@/redux/features/managebooks/ManageBooksApi";
+import Link from "next/link";
 
 const Sitebar = () => {
     const { value } = useSelector((state) => state.sidebarToggle);
     const { user } = useContext(GlobalContext);
     const { data: userData, } = useGetSingleIserQuery(user?.email);
     const userinfo = userData?.data;
-    const { data: getCart, refetch } = useGetCartQuery(userinfo?.id)
+    const { cartItems, Loading, status } = useSelector((state) => state?.cart)
 
     const dispatch = useDispatch();
-    const books = getCart?.data
+    const books = cartItems;
     return (
         <div>
             <div className=" ">
@@ -63,7 +63,7 @@ const Sitebar = () => {
                                     <div className=" max-h-[570px] moduleScrollBar overflow-y-scroll ">
                                         {" "}
                                         {books?.map((books) => (
-                                            <Side_card refetch={refetch} books={books} key={books.id}></Side_card>
+                                            <Side_card books={books} key={books.id}></Side_card>
                                         ))}
                                     </div>
                                 ) : (
@@ -76,9 +76,9 @@ const Sitebar = () => {
                             </div>
 
                             <div className=" absolute bg-white bottom-10  w-full ">
-                                <div className=" bg-primary text-[19px] text-white   mx-2 px-2 py-2 flex justify-center items-center gap-2 ">
-                                    <h1> Checkout</h1>
-                                </div>
+                                <Link href={'/checkout'} className=" bg-primary text-[19px] text-white mx-2 px-2 py-2 flex justify-center items-center gap-2 ">
+                                    <span> Checkout</span>
+                                </Link>
 
                                 {/*  /  */}
 
@@ -104,7 +104,7 @@ const Sitebar = () => {
                                 <HiShoppingBag size={28} />
                             </div>
                             <h1 className=" text-[16px] text-white font-medium">
-                                100 items{" "}
+                                {books?.length ? `${books?.length} items` : " Please add "}
                             </h1>
                         </div>
                         <div className=" bg-white   primary_color ">
