@@ -23,6 +23,7 @@ model User {
     department String?
     isRole     String?
     semester   String?
+    photo      String?
     roll       Int?
     shift      String?
     gruop      String?
@@ -46,6 +47,7 @@ model Books {
     quantity    Int // Quantity of books available
     description String? // Optional book description
     department  String?
+    rating      String? // Optional
     createdAt   DateTime    @default(now()) // Creation timestamp
     comment     Comment[] // Array of comments associated with the book
     UserBooks   UserBooks[]

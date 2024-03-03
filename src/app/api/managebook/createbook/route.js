@@ -26,8 +26,6 @@ export async function POST(req) {
         message: ` user and book do not exist`,
       });
     }
-    console.log(book, user);
-
     // Add the book to the user
     const userbookdata = await prisma.userBooks.create({ data });
     if (userbookdata) {

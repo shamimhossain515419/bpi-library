@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import RelatedProducts from "@/components/product/RelatedProducts";
 import { useGetSingleBookQuery } from "@/redux/features/books/BooksAPI";
 import Container from "@/share/container/Container";
@@ -8,19 +8,39 @@ import { IoReloadOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
 import ViewCardLoader from "../../loader/viewCardLoader";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "@/redux/features/cart/cartSlice";
 import { useEffect } from "react";
-
+import imageff from "../../../../assets/account/background.jpg";
+import { addItem } from "@/redux/features/cart/cartSlice";
 const Page = ({ params }) => {
     const { bookId } = params || {};
-    const { data: sngleProdcut, isLoading: sngleProductLoading } = useGetSingleBookQuery(bookId)
-    const { id, name, writer_name, description } = sngleProdcut?.data || {};
-    const { cartItems, Loading, status } = useSelector((state) => state?.cart)
-    const dispatch = useDispatch()
+    const { data: sngleProdcut, isLoading: sngleProductLoading } =
+        useGetSingleBookQuery(bookId);
+    const {
+        id,
+        name,
+        writer_name,
+        category,
+        price,
+        UserBooks,
+        quantity,
+        description,
+    } = sngleProdcut?.data || {};
+    const { cartItems, Loading, status } = useSelector((state) => state?.cart);
+    const dispatch = useDispatch();
     const handleSubmit = (product) => {
-        dispatch(addItem(product))
-    }
+        if (quantity <= UserBooks?.length) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Not Available",
+            });
+            return
+        } else {
+            dispatch(addItem(product));
+        }
 
+
+    };
 
     useEffect(() => {
         if (status) {
@@ -28,22 +48,19 @@ const Page = ({ params }) => {
                 icon: "success",
                 title: `Success Add cart`,
                 showConfirmButton: false,
-                timer: 1500
-            })
+                timer: 1500,
+            });
         }
+    }, [status]);
 
-    }, [status])
-
-    const cartproduct = cartItems?.find(item => item?.id === id);
-
-
+    const cartproduct = cartItems?.find((item) => item?.id === id);
 
     return (
         <>
             <Container>
-
-                {sngleProductLoading ? <ViewCardLoader></ViewCardLoader> :
-
+                {sngleProductLoading ? (
+                    <ViewCardLoader></ViewCardLoader>
+                ) : (
                     <div>
                         <section className="text-gray-700 body-font overflow-hidden bg-white">
                             <div className=" px-5 py-24 mx-auto">
@@ -134,39 +151,83 @@ const Page = ({ params }) => {
                                         </div>
                                         <hr />
                                         <div className="py-6">
-                                            <span className="text-3xl font-semibold ">
-                                                {" "}
-                                                Price: $  {sngleProdcut?.data?.price}
+                                            <span className="text-2xl font-semibold ">
+                                                {price ? `Price: ${price} ` : " Free"}{" "}
                                             </span>
 
-                                            <h1>Quantity: {sngleProdcut?.data?.quantity} </h1>
-                                            <h1> Available Quantity: {23} </h1>
+                                            <h1>Quantity: {quantity} </h1>
+                                            <h1>
+                                                {" "}
+                                                Available Quantity: {quantity - UserBooks?.length}{" "}
+                                            </h1>
                                         </div>
                                         <p className="leading-relaxed text-justify mb-3">
                                             {description}
                                         </p>
                                         <hr />
                                         <div className="py-5 ">
-                                            {
-                                                cartproduct ? <Link href={'/checkout'} className="w-full block  py-2 px-5 rounded-3xl bg-primary hover:bg-opacity-90 text-white text-[20px] text-center"> Please checkout </Link> : <button onClick={() => handleSubmit(sngleProdcut?.data)} className="w-full block  py-2 px-5 rounded-3xl bg-primary hover:bg-opacity-90">
-                                                    {
-                                                        Loading ? <span className="flex items-center justify-center "> <IoReloadOutline className="text-white animate-spin text-[20px]  text-center  " />  </span> : <span className="text-2xl text-white">Add to Cart</span>
-                                                    }
-
+                                            {cartproduct ? (
+                                                <Link
+                                                    href={"/checkout"}
+                                                    className="w-full block  py-2 px-5 rounded-3xl bg-primary hover:bg-opacity-90 text-white text-[20px] text-center"
+                                                >
+                                                    {" "}
+                                                    Please checkout{" "}
+                                                </Link>
+                                            ) : (
+                                                <button
+                                                    onClick={() => handleSubmit(sngleProdcut?.data)}
+                                                    className="w-full block  py-2 px-5 rounded-3xl bg-primary hover:bg-opacity-90"
+                                                >
+                                                    {Loading ? (
+                                                        <span className="flex items-center justify-center ">
+                                                            {" "}
+                                                            <IoReloadOutline className="text-white animate-spin text-[20px]  text-center  " />{" "}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="text-2xl text-white">
+                                                            Add to Cart
+                                                        </span>
+                                                    )}
                                                 </button>
-                                            }
-
+                                            )}
                                         </div>
                                         <hr />
                                         <p className="mb-6">
-                                            <span className="text-gray-400">Categories:</span>
-                                            <span> Action & Adventure,Activity Books, Culture</span>
+                                            <span className="text-gray-400">Categories: </span>
+                                            <span>{category}</span>
                                             <br />
 
-                                            <span className="text-gray-400">Tags:</span>
+                                            <span className="text-gray-400">Tags: </span>
                                             <span> Books,Ficton,Romance-Contemporary</span>
                                         </p>
-                                        <div></div>
+                                        <h1 className="py-2"> This book is going to them</h1>
+                                        <div className=" flex items-center justify-start gap-5">
+                                            {UserBooks?.map((user, i) => (
+                                                <div key={i}>
+                                                    <div
+                                                        class="relative overflow-hidden cursor-pointer group hover:overflow-visible focus-visible:outline-none"
+                                                        aria-describedby="tooltip-01"
+                                                    >
+                                                        <Image
+                                                            className=" w-[50px]  h-[50px] rounded-full"
+                                                            width={50}
+                                                            height={50}
+                                                            src={imageff}
+                                                            alt="image"
+                                                        ></Image>
+                                                        <p
+                                                            role="tooltip"
+                                                            id="tooltip-01"
+                                                            class="invisible absolute bottom-full left-1/2 z-10 mb-2 w-48 -translate-x-1/2 rounded bg-slate-700 p-4 text-sm text-white opacity-0 transition-all before:invisible before:absolute before:left-1/2 before:top-full before:z-10 before:mb-2 before:-ml-2 before:border-x-8 before:border-t-8 before:border-x-transparent before:border-t-slate-700 before:opacity-0 before:transition-all before:content-[''] group-hover:visible group-hover:block group-hover:opacity-100 group-hover:before:visible group-hover:before:opacity-100"
+                                                        >
+                                                            {" "}
+                                                            {user?.name ? user?.name : " no name"}{" "}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -239,14 +300,15 @@ const Page = ({ params }) => {
                                             <div className="max-w-2xl">
                                                 <div className="truncate whitespace-normal">
                                                     I am 6 feet tall and 220 lbs. This shirt fit me
-                                                    perfectly in the chest and shoulders. My only complaint
-                                                    is that it is so long! I like to wear polo shirts
-                                                    untucked. This shirt goes completely past my rear end.
-                                                    If I wore it with ordinary shorts, you probably wouldnt
-                                                    be able to see the shorts at all - completely hidden by
-                                                    the shirt. It needs to be 4 to 5 inches shorter in terms
-                                                    of length to suit me. I have many RL polo shirts, and
-                                                    this one is by far the longest. I dont understand why.
+                                                    perfectly in the chest and shoulders. My only
+                                                    complaint is that it is so long! I like to wear polo
+                                                    shirts untucked. This shirt goes completely past my
+                                                    rear end. If I wore it with ordinary shorts, you
+                                                    probably wouldnt be able to see the shorts at all -
+                                                    completely hidden by the shirt. It needs to be 4 to 5
+                                                    inches shorter in terms of length to suit me. I have
+                                                    many RL polo shirts, and this one is by far the
+                                                    longest. I dont understand why.
                                                 </div>
                                             </div>
                                         </div>
@@ -256,8 +318,8 @@ const Page = ({ params }) => {
                             <div>
                                 <form className="mt-[4rem]" action="#">
                                     <p className="opacity-75">
-                                        Your email address will not be published. Required fields are
-                                        marked *
+                                        Your email address will not be published. Required fields
+                                        are marked *
                                     </p>
                                     <p className="mt-4 mb-3">
                                         Your rating <span className=" text-primary"> *</span>
@@ -308,7 +370,7 @@ const Page = ({ params }) => {
                             </div>
                         </div>
                     </div>
-                }
+                )}
             </Container>
             <RelatedProducts />
         </>

@@ -12,6 +12,13 @@ export async function GET(req) {
       where: {
         id: id,
       },
+      include: {
+        UserBooks: {
+          include: {
+            user: true,
+          },
+        },
+      },
     });
 
     if (SngleBooks) {

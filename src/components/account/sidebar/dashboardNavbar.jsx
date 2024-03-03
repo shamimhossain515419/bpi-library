@@ -98,7 +98,7 @@ const DashboardNavbar = () => {
                                 <Link
 
                                     className="flex items-center gap-2 py-4 0 transition-colors duration-300 hover:text-emerald-600 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8"
-                                    href="/allbooks"
+                                    href="/all-books"
                                 >
                                     <span>All  books</span>
                                 </Link>

@@ -1,23 +1,20 @@
 "use client";
-import Image from "next/image";
 import { Avatar, Badge, Button, Popover, Spinner, Table } from "keep-react";
-import {
-    ArrowDown,
-    DotsThreeOutline,
-    Pencil,
-    Trash,
-    Cube,
-} from "phosphor-react";
+import { DotsThreeOutline, Pencil, Trash } from "phosphor-react";
 import { FaPlus } from "react-icons/fa6";
-import { Product_modal } from "./Product_modal";
 import { useEffect, useState } from "react";
-import { useGetAllboksQuery, useRemoveBookMutation } from "@/redux/features/books/BooksAPI";
 import Swal from "sweetalert2";
+import ModalApplyBooks from "./ModalApplyBooks";
+import {
+    useGetAllApplyQuery,
+    useRemoveCartBookMutation,
+} from "@/redux/features/managebooks/ManageBooksApi";
 
-const StoreBooksTable = () => {
-    // impot  api 
-    const [RemoveBook, { data: removeData, error, }] = useRemoveBookMutation()
-    const { data: getAllBooks, isLoading, refetch, } = useGetAllboksQuery();
+const ApplyBooks = () => {
+    // impot  api
+    const [removeCartBook, { data: removeData, error }] =
+        useRemoveCartBookMutation();
+    const { data: getAllApply, isLoading, refetch } = useGetAllApplyQuery("");
     const [showModal, setShowModal] = useState(false);
     const onClickTwo = () => {
         setShowModal(!showModal);
@@ -30,28 +27,27 @@ const StoreBooksTable = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(id);
-                RemoveBook(id)
+                removeCartBook(id);
             }
         });
-
-    }
+    };
     useEffect(() => {
         if (removeData) {
             Swal.fire({
                 title: "Deleted!",
                 text: "Your book has been deleted.",
-                icon: "success"
+                icon: "success",
             });
-            refetch()
+            refetch();
         }
-    }, [removeData, refetch])
+    }, [removeData, refetch]);
     //  crate context
     let content;
-    // sat loading 
+    // sat loading
     if (isLoading)
         content = (
             <div className=" flex justify-center items-center min-h-[400px]">
@@ -64,25 +60,24 @@ const StoreBooksTable = () => {
             </div>
         );
 
-    //  render all  books
-    if (getAllBooks)
+    if (getAllApply)
         content = (
             <div>
                 {" "}
-                <Product_modal
+                <ModalApplyBooks
                     onClickTwo={onClickTwo}
                     showModal={showModal}
                     setShowModal={setShowModal}
-                ></Product_modal>
+                ></ModalApplyBooks>
                 <Table showCheckbox={false}>
                     <Table.Caption>
                         <div className="my-5 flex items-center justify-between  px-2 lg:px-6">
                             <div className="flex items-center gap-5">
                                 <p className="text-body-1 font-semibold text-metal-600">
-                                    Team member
+                                    Apply books
                                 </p>
                                 <Badge size="xs" colorType="light" color="gray">
-                                    12 Member
+                                    {getAllApply?.data?.length}
                                 </Badge>
                             </div>
                             <div className="flex items-center gap-5">
@@ -100,18 +95,19 @@ const StoreBooksTable = () => {
 
                     <Table.Head>
                         <Table.HeadCell className="min-w-[290px]">
-                            <p className="text-body-6 font-medium text-metal-400">Name</p>
+                            <p className="text-body-6 font-medium text-metal-400">Books</p>
                         </Table.HeadCell>
                         <Table.HeadCell>Category</Table.HeadCell>
+                        <Table.HeadCell>Member</Table.HeadCell>
 
                         <Table.HeadCell className="min-w-[240px]">
                             Writer Name
                         </Table.HeadCell>
-                        <Table.HeadCell className="min-w-[152px]">Quatity</Table.HeadCell>
+                        <Table.HeadCell className="min-w-[152px]">Status</Table.HeadCell>
                         <Table.HeadCell className="min-w-[152px]">Action</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-gray-25 divide-y">
-                        {getAllBooks?.data?.map((book) => (
+                        {getAllApply?.data?.map((book) => (
                             <Table.Row key={book?._id} className="bg-white">
                                 <Table.Cell>
                                     <div className="flex items-center gap-3">
@@ -119,27 +115,37 @@ const StoreBooksTable = () => {
                                             <div className="flex items-center gap-2">
                                                 <Avatar
                                                     shape="circle"
-                                                    img={book?.image1}
+                                                    img={book?.book?.image1}
                                                     size="md"
                                                 />
                                                 <div>
                                                     <p className="-mb-0.5 text-body-4 font-medium text-metal-600 capitalize">
                                                         {" "}
-                                                        {book?.name}{" "}
+                                                        {book?.book?.name}{" "}
                                                     </p>
-                                                    <span> {book?.department} </span>
+                                                    <span> {book?.book?.department} </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <p> {book?.category} </p>
+                                    <p> {book?.book?.category} </p>
                                 </Table.Cell>
-
-                                <Table.Cell> {book?.writer_name} </Table.Cell>
                                 <Table.Cell>
-                                    <p> {book?.quantity} </p>
+                                    {" "}
+                                    <span className=" capitalize"> {book?.user?.name} </span>{" "}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    {" "}
+                                    <span className=" capitalize">
+                                        {book?.book?.writer_name}
+                                    </span>{" "}
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <span className=" bg-red-500 capitalize text-white px-2 py-[2px] rounded-[5px]">
+                                        Pending{" "}
+                                    </span>
                                 </Table.Cell>
                                 <Table.Cell>
                                     <Popover
@@ -150,7 +156,10 @@ const StoreBooksTable = () => {
                                         <Popover.Container className="!mt-0 !block">
                                             <ul>
                                                 <li className="rounded px-2 py-1 hover:bg-metal-100">
-                                                    <button onClick={() => handleDelete(book?.id)} className="flex w-full items-center justify-between text-body-4 font-normal text-metal-600">
+                                                    <button
+                                                        onClick={() => handleDelete(book?.id)}
+                                                        className="flex w-full items-center justify-between text-body-4 font-normal text-metal-600"
+                                                    >
                                                         <span>Delete</span>
                                                         <span>
                                                             <Trash />
@@ -187,4 +196,4 @@ const StoreBooksTable = () => {
     return <div>{content}</div>;
 };
 
-export default StoreBooksTable;
+export default ApplyBooks;

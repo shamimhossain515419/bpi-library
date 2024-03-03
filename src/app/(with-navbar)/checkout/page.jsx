@@ -3,8 +3,8 @@ import { GlobalContext } from '@/AuthProvider/AuthProvider';
 import CheckoutCart from '@/components/checkout/CheckoutCart';
 import Summary from '@/components/checkout/Summary';
 import { useGetSingleIserQuery } from '@/redux/features/auth/authApi';
-import { useGetCartQuery } from '@/redux/features/managebooks/ManageBooksApi';
 import Container from '@/share/container/Container';
+import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -30,7 +30,7 @@ const Page = () => {
                                             />
                                         )
                                     })
-                                }</> : <p className=' flex items-center justify-center min-h-[50px] text-[35px] text-primary'>Please add to cart</p>
+                                }</> : <Link href={'/all-books/all'} className=' flex items-center justify-center min-h-[150px] text-[35px] text-primary'>Please add to cart</Link>
                             }
 
                         </div>
