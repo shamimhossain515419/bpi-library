@@ -7,7 +7,6 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const name = searchParams.get("name") || "";
-    const title = searchParams.get("title") || "";
     const department = searchParams.get("department") || "";
     const getAllData = await prisma.books.findMany({
       include: {
@@ -19,11 +18,6 @@ export async function GET(req) {
       },
       where: {
         AND: [
-          {
-            title: {
-              contains: title, // Replace with the title you're searching for
-            },
-          },
           {
             name: {
               contains: name, // Replace with the author's name you're searching for

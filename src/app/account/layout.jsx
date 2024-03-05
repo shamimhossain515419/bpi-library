@@ -4,11 +4,7 @@ import { Toaster } from 'react-hot-toast';
 const layout = ({ children }) => {
     return (
         <div>
-
-
             <DashboardNavbar></DashboardNavbar>
-
-
             <div className=" flex items-start  pt-[87px]">
                 <div className=''>
                     <DashboardSidebar></DashboardSidebar>

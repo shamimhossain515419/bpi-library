@@ -76,7 +76,7 @@ const Hero = () => {
                                         </div>
                                    </div>
                               </SwiperSlide>
-                              <SwiperSlide className=" ">
+                              <SwiperSlide >
                                    <div className=" w-full relative group  h-[500px] md:h-[700px] overflow-hidden">
                                         <Image
                                              className=" w-full h-full  object-fill"

@@ -7,7 +7,6 @@ export async function POST(req) {
     const createBook = await req.json();
     const { userId, bookId } = createBook || {};
     const data = { userId, bookId, status: false };
-
     // if userId && bookId && status
     if (!userId || !bookId) {
       return NextResponse.json({

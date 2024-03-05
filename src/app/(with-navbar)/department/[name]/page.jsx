@@ -9,12 +9,18 @@ import Container from "@/share/container/Container";
 import FilterSection from "@/components/filter/FilterSection";
 import AllProducts from "@/components/allProdcuts/AllProducts";
 import Pagination from "@/components/Pagination/Pagination";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setFilter } from "@/redux/features/filter/FilterSlice";
 
 
-const Page = () => {
-    const pathname = usePathname();
-    const departmentLength = "/department/".length;
-    const department = pathname.substring(departmentLength);
+const Page = ({ params }) => {
+    const department = params?.name;
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(setFilter({ filterType: "department", filterValue: department }));
+    }, [dispatch, department])
+
 
     return (
         <div className=" ">

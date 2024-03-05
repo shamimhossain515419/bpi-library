@@ -4,7 +4,6 @@ import { DotsThreeOutline, Pencil, Trash } from "phosphor-react";
 import { FaPlus } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import ModalApplyBooks from "./ModalApplyBooks";
 import { BiDetail } from "react-icons/bi";
 
 import {
@@ -12,11 +11,11 @@ import {
     useRemoveCartBookMutation,
 } from "@/redux/features/managebooks/ManageBooksApi";
 
-const ApplyBooks = () => {
+const ApprobedTable = () => {
     // impot  api
     const [removeCartBook, { data: removeData, error }] =
         useRemoveCartBookMutation();
-    const { data: getAllApply, isLoading, refetch } = useGetAllApplyQuery("");
+    const { data: getAllApply, isLoading, refetch } = useGetAllApplyQuery("status");
     const [showModal, setShowModal] = useState(false);
     const [activeData, setActiveData] = useState({})
     const onClickTwo = () => {
@@ -33,6 +32,7 @@ const ApplyBooks = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
+                console.log(id);
                 removeCartBook(id);
             }
         });
@@ -65,34 +65,16 @@ const ApplyBooks = () => {
     if (getAllApply)
         content = (
             <div>
-                {" "}
-                <ModalApplyBooks setActiveData={setActiveData}
-                    onClickTwo={onClickTwo}
-                    refetch={refetch}
-                    showModal={showModal}
-                    activeData={activeData}
-                    setShowModal={setShowModal}
-                ></ModalApplyBooks>
                 <Table showCheckbox={false}>
                     <Table.Caption>
                         <div className="my-5 flex items-center justify-between  px-2 lg:px-6">
                             <div className="flex items-center gap-5">
                                 <p className="text-body-1 font-semibold text-metal-600">
-                                    Apply books
+                                    These books are going to students
                                 </p>
                                 <Badge size="xs" colorType="light" color="gray">
                                     {getAllApply?.data?.length}
                                 </Badge>
-                            </div>
-                            <div className="flex items-center gap-5">
-                                <div onClick={onClickTwo} className="flex items-center gap-5">
-                                    <Button type="outlineGray" size="sm">
-                                        <span className="pr-2">
-                                            <FaPlus />
-                                        </span>
-                                        Add New Prodcut
-                                    </Button>
-                                </div>
                             </div>
                         </div>
                     </Table.Caption>
@@ -147,8 +129,8 @@ const ApplyBooks = () => {
                                     </span>{" "}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <span className=" bg-red-500 capitalize text-white px-2 py-[2px] rounded-[5px]">
-                                        Pending{" "}
+                                    <span className=" bg-secondary  capitalize text-white px-2 py-[2px] rounded-[5px]">
+                                        Approved{" "}
                                     </span>
                                 </Table.Cell>
                                 <Table.Cell>
@@ -200,4 +182,4 @@ const ApplyBooks = () => {
     return <div>{content}</div>;
 };
 
-export default ApplyBooks;
+export default ApprobedTable;
