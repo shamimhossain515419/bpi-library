@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export async function GET(req, res) {
   try {
     const allUser = await prisma.user.findMany();
-   
+
     return NextResponse.json({
       statusCode: 200,
       success: true,

@@ -16,17 +16,14 @@ export const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    get_single_user: builder.query({
-      query: (email) => `account/user/get-single-user?id=${email}`,
-    }),
-    getAllUsers: builder.query({
-      query: () => "account/user/get-all-users",
+    getSingleIser: builder.query({
+      query: (email) => `account/user/get-single-user-by-email?email=${email}`,
     }),
   }),
 });
 
 export const {
   useRegisteruserMutation,
+  useGetSingleIserQuery,
   useLoginuserMutation,
-  useGetAllUsersQuery,
 } = authApi;

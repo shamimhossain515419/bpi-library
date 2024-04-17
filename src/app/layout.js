@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AllProvider from "@/components/AllProvider/AllProvider";
 import AuthProvider from "@/AuthProvider/AuthProvider";
+import ReduxProvider from "@/components/reduxprovider/ReduxProvider";
+import NextTopLoader from "nextjs-toploader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -13,8 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <NextTopLoader></NextTopLoader>
         <AuthProvider>
-          <AllProvider>{children}</AllProvider>
+          <ReduxProvider>
+            <div>{children}</div>
+          </ReduxProvider>
         </AuthProvider>
       </body>
     </html>

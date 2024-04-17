@@ -17,25 +17,20 @@ const AuthProvider = ({ children }) => {
         return await createUserWithEmailAndPassword(auth, email, password);
     }
 
-    const updateUserProfile = (name, photo) => {
-        setLoading(true);
-        return updateUserProfile(auth.currentUser, { displayName: name, photoURL: photo });
+    const updateUserProfile = async (name, photo) => {
+        const result = await updateProfile(auth.currentUser, { displayName: name, photoURL: photo });
+        return result
     };
 
     const userCullaction = async (email) => {
         const result = await GetSingleUser(email);
         const data = result?.data;
-        console.log(
-            data
-        );
         setUserinfo(data)
     }
 
-    const loginUser = (email, password) => {
+    const loginUser = async (email, password) => {
         setLoading(true)
-        return signInWithEmailAndPassword(auth, email, password);
-
-
+        return await signInWithEmailAndPassword(auth, email, password);
     }
 
     const logOutUser = async () => {
@@ -56,15 +51,12 @@ const AuthProvider = ({ children }) => {
                 setLoading(false);
 
             }
-            console.log('current User: ', currentUser)
+
 
         })
         return () => {
             return unsubscribe();
         };
-
-
-
     }, [])
 
 
@@ -76,7 +68,8 @@ const AuthProvider = ({ children }) => {
         googleSignIn,
         loginUser,
         userCullaction,
-        createUser
+        createUser,
+        updateUserProfile
 
     }
 

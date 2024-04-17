@@ -8,7 +8,6 @@ const key = process.env.ACCESS_TOKEN_SECRET;
 export async function POST(req) {
   try {
     const data = await req.json();
-    console.log(data);
     const { email } = data || {};
     const cookieStore = cookies();
     const findSingleUser = await prisma.user.findUnique({
@@ -16,13 +15,11 @@ export async function POST(req) {
         email,
       },
     });
-    console.log(findSingleUser);
 
     if (findSingleUser) {
       const token = jwt.sign({ email, key }, "default_secret_key", {
         expiresIn: "20d",
       });
-      console.log(findSingleUser.token);
 
       cookieStore.set("accessToken", token);
 
@@ -40,7 +37,6 @@ export async function POST(req) {
       });
     }
   } catch (e) {
-    console.log(e);
     return NextResponse.json({
       stateCode: 404,
       success: false,

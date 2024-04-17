@@ -7,7 +7,6 @@ const CursorDesign = () => {
   const [y, setY] = useState(0)
   useEffect(() => {
     const handleCursor = (e) => {
-      console.log(e.clientX, e.clientY);
       setX(e.clientX - 48)
       setY(e.clientY - 48)
     }
