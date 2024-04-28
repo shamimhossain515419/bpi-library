@@ -26,9 +26,10 @@ model User {
     photo      String?
     roll       Int?
     shift      String?
-    gruop      String?
+    group      String?
     session    String?
     reg        Int?
+    address    String?
     phone      Int?
     createdAt  DateTime    @default(now())
     Comment    Comment[]
