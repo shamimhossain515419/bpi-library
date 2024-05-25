@@ -16,8 +16,15 @@ export const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateUser: builder.mutation({
+      query: (data) => ({
+        url: "account/user/update-user",
+        method: "PATCH",
+        body: data,
+      }),
+    }),
     getSingleIser: builder.query({
-      query: (email) => `account/user/get-single-user-by-email?email=${email}`,
+      query: (data) => `account/user/get-single-user-by-email?email=${data}`,
     }),
   }),
 });
@@ -25,5 +32,6 @@ export const authApi = apiSlice.injectEndpoints({
 export const {
   useRegisteruserMutation,
   useGetSingleIserQuery,
+  useUpdateUserMutation,
   useLoginuserMutation,
 } = authApi;

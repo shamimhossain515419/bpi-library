@@ -30,6 +30,18 @@ export const sidebar = [
     Icon: <CiHome size={24}></CiHome>,
   },
   {
+    id: 9,
+    name: "Apply books",
+    path: "/account/users/apply-books",
+    Icon: <FaLayerGroup />,
+  },
+  {
+    id: 9,
+    name: "Approved books",
+    path: "/account/users/approved-books",
+    Icon: <MdBrandingWatermark />,
+  },
+  {
     id: 2,
     name: "Books",
     path: "/account/books",
@@ -37,18 +49,21 @@ export const sidebar = [
     sub: [
       {
         id: 3,
+        role: "admin",
         name: "Apply books",
         path: "/account/apply-books",
         Icon: <FaLayerGroup />,
       },
       {
         id: 4,
+        role: "admin",
         name: "Approved Books  ",
         path: "/account/approved",
         Icon: <MdBrandingWatermark size={24} />,
       },
       {
         id: 5,
+        role: "admin",
         name: "Store books",
         path: "/account/store-books",
         Icon: <BiCategoryAlt size={24} />,
@@ -58,6 +73,7 @@ export const sidebar = [
   {
     id: 5,
     name: "user",
+    role: "admin",
     path: "/account/all-users",
     Icon: <Users size={24}></Users>,
   },

@@ -1,38 +1,42 @@
-import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-import jwt from "jsonwebtoken";
-import { cookies } from "next/headers";
-export const dynamic = "force-dynamic";
+import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
+export const dynamic = 'force-dynamic';
 const key = process.env.ACCESS_TOKEN_SECRET;
 export async function POST(req) {
   try {
     const respondata = await req.json();
     const cookieStore = cookies();
     const { email, provider, name } = respondata || {};
-    const data = { name: respondata?.name, email: respondata?.email };
+    const data = {
+      name: respondata?.name,
+      email: respondata?.email,
+      group: 'A/N',
+    };
     //  provider login condition
     if (provider) {
       //  find use provide email in provider login
       const GooglefindSingleUser = await prisma.user.findUnique({
         where: {
-          email,
+          email: email,
         },
       });
 
       // generate jwt token from  email and key
-      const token = jwt.sign({ email, key }, "default_secret_key", {
-        expiresIn: "20d",
+      const token = jwt.sign({ email, key }, 'default_secret_key', {
+        expiresIn: '20d',
       });
 
       //  all ready exit   user session
       if (GooglefindSingleUser) {
-        cookieStore.set("accessToken", token);
+        cookieStore.set('accessToken', token);
 
         return NextResponse.json({
           stateCode: 2000,
-          success: "success",
-          message: " successfully  goole login ",
+          success: 'success',
+          message: ' successfully  goole login ',
           data: GooglefindSingleUser,
           token: token,
         });
@@ -41,12 +45,12 @@ export async function POST(req) {
         const GoolgeLognnewuser = await prisma.user?.create({ data });
 
         if (GoolgeLognnewuser) {
-          cookieStore.set("accessToken", token);
+          cookieStore.set('accessToken', token);
 
           return NextResponse.json({
             stateCode: 200,
             success: true,
-            message: "prodcut added successfully",
+            message: 'prodcut added successfully',
             data: GoolgeLognnewuser,
             token: token,
           });
@@ -54,7 +58,7 @@ export async function POST(req) {
           return NextResponse.json({
             stateCode: 402,
             success: false,
-            message: "Fail data  post please try agin",
+            message: 'Fail data  post please try agin',
           });
         }
       }
@@ -71,8 +75,8 @@ export async function POST(req) {
     if (findSingleUser) {
       return NextResponse.json({
         stateCode: 302,
-        success: "success",
-        message: "user allready exit   please try orther email  or phone ",
+        success: 'success',
+        message: 'user allready exit   please try orther email  or phone ',
         data: findSingleUser,
       });
     }
@@ -84,14 +88,14 @@ export async function POST(req) {
       return NextResponse.json({
         stateCode: 200,
         success: true,
-        message: "prodcut added successfully",
+        message: 'prodcut added successfully',
         data: newuser,
       });
     } else {
       return NextResponse.json({
         stateCode: 402,
         success: false,
-        message: "Fail data  post please try agin",
+        message: 'Fail data  post please try agin',
       });
     }
   } catch (e) {

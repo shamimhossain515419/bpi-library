@@ -24,12 +24,13 @@ model User {
     isRole     String?
     semester   String?
     photo      String?
-    roll       Int?
+    roll       Int?  
     shift      String?
-    gruop      String?
+    group      String?
     session    String?
     reg        Int?
     phone      Int?
+    address String?
     createdAt  DateTime    @default(now())
     Comment    Comment[]
     UserBooks  UserBooks[]
@@ -72,9 +73,4 @@ model Comment {
     userId  String @db.ObjectId
 }
 
-type Address {
-    street String
-    city   String
-    state  String
-    zip    String
-}
+
