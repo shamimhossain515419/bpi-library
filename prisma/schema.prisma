@@ -29,6 +29,7 @@ model User {
     group      String?
     session    String?
     reg        Int?
+    address    String?
     phone      Int?
     address String?
     createdAt  DateTime    @default(now())

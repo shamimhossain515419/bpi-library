@@ -1,49 +1,32 @@
-<<<<<<< HEAD
-'use client';
-import { GlobalContext } from '@/AuthProvider/AuthProvider';
-import EditInformation from '@/components/account/profile/EditInformation';
-import { useGetSingleIserQuery } from '@/redux/features/auth/authApi';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { useContext } from 'react';
-=======
 "use client";
-import { GlobalContext } from "@/AuthProvider/AuthProvider";
-import ProfileComponent from "@/components/account/profile/ProfileComponent";
-import React from "react";
-import { useContext } from "react";
->>>>>>> origin/main
+import { useGetSingleIserQuery } from "@/redux/features/auth/authApi";
+import EditProfile from "./EditProfile";
+import { useState } from "react";
 
-const Page = () => {
-  const { user } = useContext(GlobalContext);
-
-<<<<<<< HEAD
-  const [activeModal, setActiveModal] = useState(false);
-  const { data } = useGetSingleIserQuery(user?.email);
-  const usersDetails = data?.data;
-
+const ProfileComponent = ({ user }) => {
+  const { data, error } = useGetSingleIserQuery(user?.email);
+  const userInfo = data?.data;
+  const [active, setActive] = useState(false);
   return (
     <>
-      <div class="flex items-center justify-center min-h-screen ">
+      <div class="flex items-center w-full justify-center min-h-screen">
         <div class="bg-white shadow-lg rounded-lg p-4 md:w-2/4 grid gap-4 mt-10 mb-10 relative">
           <h2 class="font-bold">My Profile</h2>
           <div class="p-4 border rounded-lg border-gray-200">
             <div class="flex justify-between items-center">
               <div class="flex items-center">
-                {/* <!-- Student Profile Photo || height,width need same size so that it can round fully --> */}
-                <Image
-                  width={100}
-                  height={100}
+                <img
                   class="rounded-full  w-14 sm:w-auto sm:h-14 cursor-pointer"
-                  src={user?.photoURL}
+                  src={userInfo?.photo}
                   alt="User Photo"
                 />
                 <div class="ml-3">
-                  <h2 class="font-bold"> {user?.displayName} </h2>
-                  <p class="text-sm opacity-60 ">#Role: Student</p>
+                  <h2 class="font-bold">{user?.displayName}</h2>
                   <p class="text-sm opacity-60 ">
-                    {' '}
-                    {usersDetails?.address ? usersDetails?.address : 'N/A'}{' '}
+                    #Role: {userInfo?.isRole ? userInfo?.isRole : "N/A"}{" "}
+                  </p>
+                  <p class="text-sm opacity-60 ">
+                    {userInfo?.address ? userInfo?.address : "N/A"}
                   </p>
                 </div>
               </div>
@@ -63,69 +46,63 @@ const Page = () => {
               <div class="grid gap-4 gap-y-5 lg:grid-cols-2 mt-6 opacity-60 lg:text-sm">
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Name</span>
-                  <span class="font-semibold">
-                    {' '}
-                    {usersDetails?.name ? usersDetails?.name : 'N/A'}{' '}
-                  </span>
+                  <span class="font-semibold">{userInfo?.name}</span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Department</span>
                   <span class="font-semibold">
-                    {usersDetails?.department
-                      ? usersDetails?.department
-                      : 'N/A'}{' '}
+                    {userInfo?.department ? userInfo?.department : "N/A"}
                   </span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Semester</span>
                   <span class="font-semibold">
-                    {usersDetails?.department ? usersDetails?.semester : 'N/A'}{' '}
+                    {userInfo?.semester ? userInfo?.semester : "N/A"}
                   </span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Shift</span>
                   <span class="font-semibold">
-                    {usersDetails?.shift ? usersDetails?.shift : 'N/A'}{' '}
+                    {userInfo?.shift ? userInfo?.shift : "N/A"}
                   </span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Roll</span>
                   <span class="font-semibold">
-                    {' '}
-                    {usersDetails?.roll ? usersDetails?.roll : 'N/A'}{' '}
+                    {" "}
+                    {userInfo?.roll ? userInfo?.roll : "N/A"}
                   </span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Group</span>
                   <span class="font-semibold">
-                    {' '}
-                    {usersDetails?.gruop ? usersDetails?.gruop : 'N/A'}{' '}
+                    {" "}
+                    {userInfo?.group ? userInfo?.group : "N/A"}
                   </span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Registration</span>
                   <span class="font-semibold">
-                    {' '}
-                    {usersDetails?.registration
-                      ? usersDetails?.registration
-                      : 'N/A'}{' '}
+                    {" "}
+                    {userInfo?.reg ? userInfo?.reg : "N/A"}
                   </span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Session</span>
                   <span class="font-semibold">
-                    {' '}
-                    {usersDetails?.sesstion
-                      ? usersDetails?.sesstion
-                      : 'N/A'}{' '}
+                    {" "}
+                    {userInfo?.session ? userInfo?.session : "N/A"}
                   </span>
                 </div>
               </div>
 
               <div class="absolute ms-2 top-2 right-2 lg:top-4 lg:right-4">
-                <div onClick={() => setActiveModal(usersDetails)}>
-                  <button class="border-2 rounded-md p-2 w-20 text-sm font-semibold opacity-30 hover:opacity-100 focus:ring-2 duration-300 hover:shadow-md hover:border-green-800 focus:shadow-md focus:outline-none focus:ring-green-800 focus:border-green-800">
-                    <i class="fa-solid fa-pencil"></i>&nbsp;&nbsp;Edit
+                <div>
+                  <button
+                    onClick={() => setActive(userInfo)}
+                    class="border-2 rounded-md p-2 w-20 text-sm font-semibold opacity-30 hover:opacity-100 focus:ring-2 duration-300 hover:shadow-md hover:border-green-800 focus:shadow-md focus:outline-none focus:ring-green-800 focus:border-green-800"
+                  >
+                    Edit
                   </button>
                 </div>
               </div>
@@ -138,12 +115,12 @@ const Page = () => {
               <div class="grid gap-4 gap-y-5 lg:grid-cols-2 mt-6 opacity-60 lg:text-sm">
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Card Type</span>
-                  {/* <!-- dafult value is Reading card --> */}
+
                   <span class="font-semibold">Reading Card</span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
                   <span>Card Status</span>
-                  {/* <!-- dafult value is Active --> */}
+
                   <span class="font-semibold text-green-500">Active</span>
                 </div>
                 <div class="grid grid-cols-1 gap-y-2">
@@ -167,20 +144,9 @@ const Page = () => {
           </div>
         </div>
       </div>
-      {activeModal && (
-        <EditInformation
-          activeModal={activeModal}
-          setActiveModal={setActiveModal}
-        />
-      )}
+      {active && <EditProfile userInfo={active} setActive={setActive} />}
     </>
-=======
-  return (
-    <div className="">
-      <ProfileComponent user={user} />
-    </div>
->>>>>>> origin/main
   );
 };
 
-export default Page;
+export default ProfileComponent;
