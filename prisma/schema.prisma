@@ -31,7 +31,6 @@ model User {
     reg        Int?
     address    String?
     phone      Int?
-    address String?
     createdAt  DateTime    @default(now())
     Comment    Comment[]
     UserBooks  UserBooks[]

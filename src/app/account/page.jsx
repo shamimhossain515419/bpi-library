@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use client';
 import { GlobalContext } from '@/AuthProvider/AuthProvider';
 import EditInformation from '@/components/account/profile/EditInformation';
@@ -6,18 +5,10 @@ import { useGetSingleIserQuery } from '@/redux/features/auth/authApi';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useContext } from 'react';
-=======
-"use client";
-import { GlobalContext } from "@/AuthProvider/AuthProvider";
-import ProfileComponent from "@/components/account/profile/ProfileComponent";
-import React from "react";
-import { useContext } from "react";
->>>>>>> origin/main
 
 const Page = () => {
   const { user } = useContext(GlobalContext);
 
-<<<<<<< HEAD
   const [activeModal, setActiveModal] = useState(false);
   const { data } = useGetSingleIserQuery(user?.email);
   const usersDetails = data?.data;
@@ -174,12 +165,6 @@ const Page = () => {
         />
       )}
     </>
-=======
-  return (
-    <div className="">
-      <ProfileComponent user={user} />
-    </div>
->>>>>>> origin/main
   );
 };
 
