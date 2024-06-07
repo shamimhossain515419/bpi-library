@@ -18,7 +18,7 @@ export const authApi = apiSlice.injectEndpoints({
     }),
 
     getAllboks: builder.query({
-      query: (id) => `books/get-all?${id}`,
+      query: (id) => `books/get-all`,
     }),
     getSingleBook: builder.query({
       query: (id) => `books/single-by-id?id=${id}`,

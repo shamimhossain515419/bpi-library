@@ -33,7 +33,7 @@ const EditInformation = ({ setActiveModal, activeModal }) => {
     };
 
     const res = await fetch(
-      `http://localhost:3000/api/account/user/update-user`,
+      `https://bpi-library.vercel.app/api/account/user/update-user`,
       {
         method: 'PUT',
         headers: {

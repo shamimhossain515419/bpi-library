@@ -34,7 +34,7 @@ const Navbar = () => {
                                         <div className=" flex  items-center gap-4 clear-start w-[170px]">
                                              <Link href="/">
                                                   {" "}
-                                                  <Image width={0} height={50}
+                                                  <Image width={0} height={40}
                                                        src={logo}
                                                        className="  block   w-full   h-full"
                                                        alt="image"

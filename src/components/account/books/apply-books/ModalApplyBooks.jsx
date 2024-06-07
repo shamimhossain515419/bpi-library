@@ -11,7 +11,7 @@ const ModalApplyBooks = ({ setShowModal, refetch, setActiveData, activeData, sho
 
         try {
             setLoading(true)
-            const res = await fetch(`http://localhost:3000/api/managebook/editmanagebook?id=${activeData?.id}`, {
+            const res = await fetch(`https://bpi-library.vercel.app/api/managebook/editmanagebook?id=${activeData?.id}`, {
                 method: "PUT"
             });
             const data = await res.json();

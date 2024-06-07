@@ -31,7 +31,7 @@ const EditProfile = ({ userInfo, setActive }) => {
     };
     try {
       const response = await fetch(
-        "http://localhost:3000/api/account/user/update-user",
+        "https://bpi-library.vercel.app/api/account/user/update-user",
         {
           method: "PUT",
           headers: {
