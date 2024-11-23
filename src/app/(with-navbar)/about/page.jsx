@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import AboutUs from "@/components/about/AboutUs";
+import React, { useContext } from "react";
 
 const page = () => {
-
-    return (
-        <div>
-
-        </div>
-    );
+  return (
+    <>
+      <AboutUs />
+    </>
+  );
 };
 
 export default page;
