@@ -81,10 +81,10 @@ const StoreBooksTable = () => {
             <div className="my-5 flex items-center justify-between  px-2 lg:px-6">
               <div className="flex items-center gap-5">
                 <p className="text-body-1 font-semibold text-metal-600">
-                  All Books{" "}
+                  All users{" "}
                 </p>
                 <Badge size="xs" colorType="light" color="gray">
-                  {getAllBooks?.data?.length}
+                  12 Member
                 </Badge>
               </div>
               <div className="flex items-center gap-5">
@@ -182,7 +182,6 @@ const StoreBooksTable = () => {
               </Table.Row>
             ))}
           </Table.Body>
-          <h1> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, sit!</h1>
         </Table>
       </div>
     );
